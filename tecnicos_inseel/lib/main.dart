@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tecnicos_inseel/pages/home.dart';
+import 'package:tecnicos_inseel/views/pages/home.dart';
+
 
 void main() {
   runApp(const TecnicosInseel());
