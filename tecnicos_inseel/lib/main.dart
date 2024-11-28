@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tecnicos_inseel/pages/home.dart';
 
 void main() {
   runApp(const TecnicosInseel());
@@ -14,6 +15,7 @@ class TecnicosInseel extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Tecnicos Inseel',
       theme: ThemeData(
+        fontFamily: 'oxanium',
         colorScheme: const ColorScheme(
           brightness: Brightness.light,
           primary: Color(0xff595959),
@@ -22,12 +24,12 @@ class TecnicosInseel extends StatelessWidget {
           onSecondary: Color(0xfff2f2f2),
           error: Colors.red,
           onError: Colors.white,
-          surface: Color(0xfff2a03d),
+          surface: Color.fromARGB(255, 255, 197, 126),
           onSurface: Color(0xff595959)
           ),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const Home(),
     );
   }
 }
@@ -59,7 +61,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         
-        backgroundColor: Theme.of(context).colorScheme.primary,
+        backgroundColor: Theme.of(context).colorScheme.onPrimary,
         
         title: Text(widget.title),
       ),
