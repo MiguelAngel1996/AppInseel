@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:tecnicos_inseel/controllers/ots_provider.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -10,6 +12,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
+    final listasOt = Provider.of<OtsProvider>(context).listasOt;
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
       body: SafeArea(
@@ -39,11 +42,30 @@ class _HomeState extends State<Home> {
                   ),
                 ),
               ),
-              /* Expanded(
-                child: Container(
-                  color: Theme.of(context).colorScheme.surface,
+              Flexible(
+                child: Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: ListView.builder(
+                    itemCount: listasOt.length,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Theme.of(context).colorScheme.onSecondary,
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: ListTile(
+                            title: Text(listasOt[index].motivo),
+                            subtitle: Text(listasOt[index].horaInicio),
+                            trailing: Text(listasOt[index].numeroOt),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
                 ),
-              ), */
+              ),
             ],
           ),
         ),
