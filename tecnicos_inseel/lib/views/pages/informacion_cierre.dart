@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tecnicos_inseel/controllers/ots_provider.dart';
-import 'package:tecnicos_inseel/views/pages/motivo_servicio.dart';
 
-class InformacionInicial extends StatefulWidget {
-  const InformacionInicial({super.key});
+class InformacionCierre extends StatefulWidget {
+  const InformacionCierre({super.key});
 
   @override
-  State<InformacionInicial> createState() => _InformacionInicialState();
+  State<InformacionCierre> createState() => _InformacionCierreState();
 }
 
-class _InformacionInicialState extends State<InformacionInicial> {
+class _InformacionCierreState extends State<InformacionCierre> {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<OtsProvider>(context);
@@ -31,7 +30,7 @@ class _InformacionInicialState extends State<InformacionInicial> {
             ),
             child: Center(
               child: Text(
-                'Información Inicial',
+                'Información de Cierre',
                 style: TextStyle(
                   fontSize: 24,
                   color: Theme.of(context).colorScheme.primary,
@@ -55,7 +54,7 @@ class _InformacionInicialState extends State<InformacionInicial> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'O.T. #:',
+                      'Técnico 1:',
                       style: Theme.of(context)
                           .textTheme
                           .bodySmall!
@@ -92,7 +91,49 @@ class _InformacionInicialState extends State<InformacionInicial> {
                         ),
                       ),
                       onChanged: (value) {
-                        nuevaOt.numeroOt = value;
+                        nuevaOt.tecnico1 = value;
+                      },
+                    ),
+                    const SizedBox(height: 10),
+                    Text(
+                      'Técnico 2:',
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodySmall!
+                          .copyWith(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                              color: Theme.of(context)
+                                  .colorScheme
+                                  .onSecondary),
+                    ),
+                    const SizedBox(height: 8),
+                    TextField(
+                      decoration: InputDecoration(
+                        filled: true,
+                        fillColor:
+                            Theme.of(context).colorScheme.onSecondary,
+                        contentPadding: const EdgeInsets.symmetric(
+                          vertical: 16.0,
+                          horizontal: 20.0,
+                        ), // Padding interno del TextField
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(
+                              30), // Bordes redondeados
+                          borderSide: BorderSide.none, // Sin borde
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(30),
+                          borderSide: BorderSide(
+                            color: Theme.of(context)
+                                .colorScheme
+                                .onSecondary, // Borde al enfocarse
+                            width: 2.0,
+                          ),
+                        ),
+                      ),
+                      onChanged: (value) {
+                        nuevaOt.tecnico2 = value;
                       },
                     ),
                     const SizedBox(height: 10),
@@ -104,7 +145,7 @@ class _InformacionInicialState extends State<InformacionInicial> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Fecha inicio:',
+                              'Fecha finalización:',
                               style: Theme.of(context)
                                   .textTheme
                                   .bodySmall!
@@ -148,7 +189,7 @@ class _InformacionInicialState extends State<InformacionInicial> {
                                   ),
                                 ),
                                 onChanged: (value) {
-                                  nuevaOt.fechaInicio = value;
+                                  nuevaOt.fechaFin = value;
                                 },
                               ),
                             ),
@@ -158,7 +199,7 @@ class _InformacionInicialState extends State<InformacionInicial> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Hora inicio:',
+                              'Hora finalización:',
                               style: Theme.of(context)
                                   .textTheme
                                   .bodySmall!
@@ -202,7 +243,7 @@ class _InformacionInicialState extends State<InformacionInicial> {
                                   ),
                                 ),
                                 onChanged: (value) {
-                                  nuevaOt.horaInicio = value;
+                                  nuevaOt.horaFin = value;
                                 },
                               ),
                             ),
@@ -212,7 +253,7 @@ class _InformacionInicialState extends State<InformacionInicial> {
                     ),
                     const SizedBox(height: 10),
                     Text(
-                      'Cliente:',
+                      'Gasto Real:',
                       style: Theme.of(context)
                           .textTheme
                           .bodySmall!
@@ -249,12 +290,12 @@ class _InformacionInicialState extends State<InformacionInicial> {
                         ),
                       ),
                       onChanged: (value) {
-                        nuevaOt.cliente = value;
+                        nuevaOt.gastoReal = value;
                       },
                     ),
                     const SizedBox(height: 10),
                     Text(
-                      'Sucursal:',
+                      'Quien recibe el servicio:',
                       style: Theme.of(context)
                           .textTheme
                           .bodySmall!
@@ -291,49 +332,7 @@ class _InformacionInicialState extends State<InformacionInicial> {
                         ),
                       ),
                       onChanged: (value) {
-                        nuevaOt.sucursal = value;
-                      },
-                    ),
-                    const SizedBox(height: 10),
-                    Text(
-                      'Ciudad:',
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodySmall!
-                          .copyWith(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20,
-                              color: Theme.of(context)
-                                  .colorScheme
-                                  .onSecondary),
-                    ),
-                    const SizedBox(height: 8),
-                    TextField(
-                      decoration: InputDecoration(
-                        filled: true,
-                        fillColor:
-                            Theme.of(context).colorScheme.onSecondary,
-                        contentPadding: const EdgeInsets.symmetric(
-                          vertical: 16.0,
-                          horizontal: 20.0,
-                        ), // Padding interno del TextField
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(
-                              30), // Bordes redondeados
-                          borderSide: BorderSide.none, // Sin borde
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(30),
-                          borderSide: BorderSide(
-                            color: Theme.of(context)
-                                .colorScheme
-                                .onSecondary, // Borde al enfocarse
-                            width: 2.0,
-                          ),
-                        ),
-                      ),
-                      onChanged: (value) {
-                        nuevaOt.ciudad = value;
+                        nuevaOt.recibe = value;
                       },
                     ),
                     const SizedBox(height: 10),
@@ -346,7 +345,7 @@ class _InformacionInicialState extends State<InformacionInicial> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => const MotivoServicio()));
+          Navigator.push(context, MaterialPageRoute(builder: (context) => const InformacionCierre()));
         },
         tooltip: 'Siguiente',
         child: const Icon(Icons.arrow_forward_sharp),

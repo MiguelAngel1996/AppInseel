@@ -20,8 +20,8 @@ class OtsProvider extends ChangeNotifier {
     horaFin: '',
     gastoReal: '',
     recibe: '',
-    alturas: false,
-    estado: false,
+    alturas: 'No',
+    estado: 'Pendiente',
     materiales: {},
   );
 
@@ -105,12 +105,12 @@ class OtsProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void actualizarAlturas(bool nuevoAlturas) {
+  void actualizarAlturas(String nuevoAlturas) {
     nuevaOt.alturas = nuevoAlturas;
     notifyListeners();
   }
 
-  void actualizarEstado(bool nuevoEstado) {
+  void actualizarEstado(String nuevoEstado) {
     nuevaOt.estado = nuevoEstado;
     notifyListeners();
   }
@@ -138,8 +138,8 @@ class OtsProvider extends ChangeNotifier {
       horaFin: '15:45',
       gastoReal: '3 horas',
       recibe: 'Andres',
-      alturas: true,
-      estado: true,
+      alturas: 'No',
+      estado: 'Pendiente',
       materiales: {'Lamparas': 2, 'Tornillos': 4},
     ),
   ];

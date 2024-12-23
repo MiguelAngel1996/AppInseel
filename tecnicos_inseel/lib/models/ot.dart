@@ -15,8 +15,8 @@ class Ot {
   String horaFin;
   String gastoReal;
   String recibe;
-  bool alturas;
-  bool estado;
+  String alturas;
+  String estado;
   Map<String, int> materiales;
 
   Ot({
