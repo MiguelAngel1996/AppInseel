@@ -1,23 +1,23 @@
 class Ot {
-  final String numeroOt;
-  final String fechaInicio;
-  final String horaInicio;
-  final String cliente;
-  final String sucursal;
-  final String ciudad;
-  final String motivo;
-  final String diagnostico;
-  final String trabajos;
-  final String comentarios;  
-  final String tecnico1;
-  final String tecnico2;
-  final String fechaFin;
-  final String horaFin;
-  final String gastoReal;
-  final String recibe;
-  final bool alturas;
-  final bool estado;
-  final Map<String, int> materiales;
+  String numeroOt;
+  String fechaInicio;
+  String horaInicio;
+  String cliente;
+  String sucursal;
+  String ciudad;
+  String motivo;
+  String diagnostico;
+  String trabajos;
+  String comentarios;  
+  String tecnico1;
+  String tecnico2;
+  String fechaFin;
+  String horaFin;
+  String gastoReal;
+  String recibe;
+  bool alturas;
+  bool estado;
+  Map<String, int> materiales;
 
   Ot({
     required this.numeroOt,

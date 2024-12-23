@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tecnicos_inseel/controllers/ots_provider.dart';
+import 'package:tecnicos_inseel/views/pages/informacion_inicial.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -14,34 +15,37 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     final listasOt = Provider.of<OtsProvider>(context).listasOt;
     return Scaffold(
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(80), // Altura personalizada
+        child: AppBar(
+          backgroundColor: Colors.transparent, // Fondo transparente
+          elevation: 0, // Sin sombra
+          flexibleSpace: Container(
+            decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.secondary, // Fondo blanco
+              borderRadius: const BorderRadius.only(
+                bottomLeft: Radius.circular(20),
+                bottomRight: Radius.circular(20),
+              ),
+            ),
+            child: Center(
+              child: Text(
+                'Técnicos INSEEL',
+                style: TextStyle(
+                  fontSize: 24,
+                  color: Theme.of(context).colorScheme.onPrimary,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
       backgroundColor: Theme.of(context).colorScheme.surface,
       body: SafeArea(
         child: Center(
           child: Column(
             children: [
-              Container(
-                alignment: Alignment.center,
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.secondary,
-                  borderRadius: const BorderRadius.only(
-                    bottomLeft:
-                        Radius.circular(30), // Redondeo inferior izquierdo
-                    bottomRight: Radius.circular(30),
-                  ),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(30),
-                  child: Text(
-                    'Técnicos INSEEL',
-                    style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 35,
-                          color: Colors.white,
-                        ),
-                  ),
-                ),
-              ),
               Flexible(
                 child: Padding(
                   padding: const EdgeInsets.all(10),
@@ -69,6 +73,13 @@ class _HomeState extends State<Home> {
             ],
           ),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){
+          Navigator.push(context, MaterialPageRoute(builder: (context) => const InformacionInicial()));
+        },
+        tooltip: 'Nueva Orden',
+        child: const Icon(Icons.add),
       ),
     );
   }
