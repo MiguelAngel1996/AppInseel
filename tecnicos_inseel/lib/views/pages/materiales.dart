@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tecnicos_inseel/controllers/ots_provider.dart';
-import 'package:tecnicos_inseel/views/pages/informacion_inicial.dart';
+import 'package:tecnicos_inseel/views/components/agregar_materiales.dart';
+import 'package:tecnicos_inseel/views/pages/comentarios.dart';
 
-class Home extends StatefulWidget {
-  const Home({super.key});
+class Materiales extends StatefulWidget {
+  const Materiales({super.key});
 
   @override
-  State<Home> createState() => _HomeState();
+  State<Materiales> createState() => _MaterialesState();
 }
 
-class _HomeState extends State<Home> {
+class _MaterialesState extends State<Materiales> {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<OtsProvider>(context);
-    final listasOt = provider.listasOt;
+    final nuevaOt = provider.nuevaOt;
+    final List<MapEntry<String, String>> listaMateriales =
+        nuevaOt.materiales.entries.toList();
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(80), // Altura personalizada
@@ -23,7 +26,7 @@ class _HomeState extends State<Home> {
           elevation: 0, // Sin sombra
           flexibleSpace: Container(
             decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.secondary, // Fondo blanco
+              color: Theme.of(context).colorScheme.onSecondary, // Fondo blanco
               borderRadius: const BorderRadius.only(
                 bottomLeft: Radius.circular(20),
                 bottomRight: Radius.circular(20),
@@ -31,10 +34,10 @@ class _HomeState extends State<Home> {
             ),
             child: Center(
               child: Text(
-                'Técnicos INSEEL',
+                'Materiales utilizados',
                 style: TextStyle(
                   fontSize: 24,
-                  color: Theme.of(context).colorScheme.onPrimary,
+                  color: Theme.of(context).colorScheme.primary,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -42,7 +45,7 @@ class _HomeState extends State<Home> {
           ),
         ),
       ),
-      backgroundColor: Theme.of(context).colorScheme.surface,
+      backgroundColor: Theme.of(context).colorScheme.secondary,
       body: SafeArea(
         child: Center(
           child: Column(
@@ -51,7 +54,7 @@ class _HomeState extends State<Home> {
                 child: Padding(
                   padding: const EdgeInsets.all(10),
                   child: ListView.builder(
-                    itemCount: listasOt.length,
+                    itemCount: listaMateriales.length,
                     itemBuilder: (context, index) {
                       return Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -61,9 +64,12 @@ class _HomeState extends State<Home> {
                             borderRadius: BorderRadius.circular(20),
                           ),
                           child: ListTile(
-                            title: Text(listasOt[index].motivo),
-                            subtitle: Text(listasOt[index].horaInicio),
-                            trailing: Text(listasOt[index].numeroOt),
+                            title: Text(listaMateriales[index].key),
+                            //subtitle: Text(listaMateriales[index].value),
+                            trailing: Text(
+                              listaMateriales[index].value,
+                              style: const TextStyle(fontSize: 15),
+                            ),
                           ),
                         ),
                       );
@@ -71,16 +77,37 @@ class _HomeState extends State<Home> {
                   ),
                 ),
               ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ElevatedButton(
+                  onPressed: () {
+                    showModalBottomSheet(
+                      context: context,
+                      builder: (context) {
+                        return const AgregarMateriales();
+                      },
+                    );
+                  },
+                  child: const Text(
+                    'Argregar',
+                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 15,
+              ),
             ],
           ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: (){
-          Navigator.push(context, MaterialPageRoute(builder: (context) => const InformacionInicial()));
+        onPressed: () {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => const Comentarios()));
         },
-        tooltip: 'Nueva Orden',
-        child: const Icon(Icons.add),
+        tooltip: 'Siguiente',
+        child: const Icon(Icons.arrow_forward_sharp),
       ),
     );
   }

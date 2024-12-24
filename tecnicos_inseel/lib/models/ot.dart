@@ -17,7 +17,7 @@ class Ot {
   String recibe;
   String alturas;
   String estado;
-  Map<String, int> materiales;
+  Map<String, String> materiales;
 
   Ot({
     required this.numeroOt,

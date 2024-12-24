@@ -50,34 +50,28 @@ class _InformacionCierreState extends State<InformacionCierre> {
               padding: const EdgeInsets.all(30),
               child: SizedBox(
                 width: double.infinity,
-                child: Column(                      
+                child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       'Técnico 1:',
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodySmall!
-                          .copyWith(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20,
-                              color: Theme.of(context)
-                                  .colorScheme
-                                  .onSecondary),
+                      style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                          color: Theme.of(context).colorScheme.onSecondary),
                     ),
                     const SizedBox(height: 8),
                     TextField(
                       decoration: InputDecoration(
                         filled: true,
-                        fillColor:
-                            Theme.of(context).colorScheme.onSecondary,
+                        fillColor: Theme.of(context).colorScheme.onSecondary,
                         contentPadding: const EdgeInsets.symmetric(
                           vertical: 16.0,
                           horizontal: 20.0,
                         ), // Padding interno del TextField
                         enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(
-                              30), // Bordes redondeados
+                          borderRadius:
+                              BorderRadius.circular(30), // Bordes redondeados
                           borderSide: BorderSide.none, // Sin borde
                         ),
                         focusedBorder: OutlineInputBorder(
@@ -97,29 +91,23 @@ class _InformacionCierreState extends State<InformacionCierre> {
                     const SizedBox(height: 10),
                     Text(
                       'Técnico 2:',
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodySmall!
-                          .copyWith(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20,
-                              color: Theme.of(context)
-                                  .colorScheme
-                                  .onSecondary),
+                      style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                          color: Theme.of(context).colorScheme.onSecondary),
                     ),
                     const SizedBox(height: 8),
                     TextField(
                       decoration: InputDecoration(
                         filled: true,
-                        fillColor:
-                            Theme.of(context).colorScheme.onSecondary,
+                        fillColor: Theme.of(context).colorScheme.onSecondary,
                         contentPadding: const EdgeInsets.symmetric(
                           vertical: 16.0,
                           horizontal: 20.0,
                         ), // Padding interno del TextField
                         enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(
-                              30), // Bordes redondeados
+                          borderRadius:
+                              BorderRadius.circular(30), // Bordes redondeados
                           borderSide: BorderSide.none, // Sin borde
                         ),
                         focusedBorder: OutlineInputBorder(
@@ -164,19 +152,16 @@ class _InformacionCierreState extends State<InformacionCierre> {
                               child: TextField(
                                 decoration: InputDecoration(
                                   filled: true,
-                                  fillColor: Theme.of(context)
-                                      .colorScheme
-                                      .onSecondary,
-                                  contentPadding:
-                                      const EdgeInsets.symmetric(
+                                  fillColor:
+                                      Theme.of(context).colorScheme.onSecondary,
+                                  contentPadding: const EdgeInsets.symmetric(
                                     vertical: 16.0,
                                     horizontal: 20.0,
                                   ), // Padding interno del TextField
                                   enabledBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(
                                         30), // Bordes redondeados
-                                    borderSide:
-                                        BorderSide.none, // Sin borde
+                                    borderSide: BorderSide.none, // Sin borde
                                   ),
                                   focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(30),
@@ -218,19 +203,16 @@ class _InformacionCierreState extends State<InformacionCierre> {
                               child: TextField(
                                 decoration: InputDecoration(
                                   filled: true,
-                                  fillColor: Theme.of(context)
-                                      .colorScheme
-                                      .onSecondary,
-                                  contentPadding:
-                                      const EdgeInsets.symmetric(
+                                  fillColor:
+                                      Theme.of(context).colorScheme.onSecondary,
+                                  contentPadding: const EdgeInsets.symmetric(
                                     vertical: 16.0,
                                     horizontal: 20.0,
                                   ), // Padding interno del TextField
                                   enabledBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(
                                         30), // Bordes redondeados
-                                    borderSide:
-                                        BorderSide.none, // Sin borde
+                                    borderSide: BorderSide.none, // Sin borde
                                   ),
                                   focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(30),
@@ -254,29 +236,23 @@ class _InformacionCierreState extends State<InformacionCierre> {
                     const SizedBox(height: 10),
                     Text(
                       'Gasto Real:',
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodySmall!
-                          .copyWith(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20,
-                              color: Theme.of(context)
-                                  .colorScheme
-                                  .onSecondary),
+                      style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                          color: Theme.of(context).colorScheme.onSecondary),
                     ),
                     const SizedBox(height: 8),
                     TextField(
                       decoration: InputDecoration(
                         filled: true,
-                        fillColor:
-                            Theme.of(context).colorScheme.onSecondary,
+                        fillColor: Theme.of(context).colorScheme.onSecondary,
                         contentPadding: const EdgeInsets.symmetric(
                           vertical: 16.0,
                           horizontal: 20.0,
                         ), // Padding interno del TextField
                         enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(
-                              30), // Bordes redondeados
+                          borderRadius:
+                              BorderRadius.circular(30), // Bordes redondeados
                           borderSide: BorderSide.none, // Sin borde
                         ),
                         focusedBorder: OutlineInputBorder(
@@ -296,29 +272,23 @@ class _InformacionCierreState extends State<InformacionCierre> {
                     const SizedBox(height: 10),
                     Text(
                       'Quien recibe el servicio:',
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodySmall!
-                          .copyWith(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20,
-                              color: Theme.of(context)
-                                  .colorScheme
-                                  .onSecondary),
+                      style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                          color: Theme.of(context).colorScheme.onSecondary),
                     ),
                     const SizedBox(height: 8),
                     TextField(
                       decoration: InputDecoration(
                         filled: true,
-                        fillColor:
-                            Theme.of(context).colorScheme.onSecondary,
+                        fillColor: Theme.of(context).colorScheme.onSecondary,
                         contentPadding: const EdgeInsets.symmetric(
                           vertical: 16.0,
                           horizontal: 20.0,
                         ), // Padding interno del TextField
                         enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(
-                              30), // Bordes redondeados
+                          borderRadius:
+                              BorderRadius.circular(30), // Bordes redondeados
                           borderSide: BorderSide.none, // Sin borde
                         ),
                         focusedBorder: OutlineInputBorder(
@@ -335,20 +305,33 @@ class _InformacionCierreState extends State<InformacionCierre> {
                         nuevaOt.recibe = value;
                       },
                     ),
-                    const SizedBox(height: 10),
+                    //const SizedBox(height: 30),
+                    SizedBox(
+                      width: double.infinity,
+                      child: Padding(
+                        padding: const EdgeInsets.all(50),
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor:
+                                Theme.of(context).colorScheme.primary,
+                          ),
+                          onPressed: () {},
+                          child: Text(
+                            'Terminar',
+                            style: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
+                                color: Theme.of(context).colorScheme.onPrimary),
+                          ),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
             ),
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => const InformacionCierre()));
-        },
-        tooltip: 'Siguiente',
-        child: const Icon(Icons.arrow_forward_sharp),
       ),
     );
   }
