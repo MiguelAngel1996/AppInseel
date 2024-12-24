@@ -182,7 +182,7 @@ class _AlturasPendienteState extends State<AlturasPendiente> {
                       ),
                       onPressed: () {
                         setState(() {
-                          nuevaOt.alturas =
+                          nuevaOt.estado =
                               'Pendiente'; // Marca "Pendiente" como seleccionado
                         });
                       },

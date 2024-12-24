@@ -22,7 +22,7 @@ class OtsProvider extends ChangeNotifier {
     recibe: '',
     alturas: 'No',
     estado: 'Pendiente',
-    materiales: {},
+    materiales: {'Tornillos':'2'},
   );
 
   void actualizarNumeroOt(String nuevoNumeroOt) {
@@ -115,8 +115,8 @@ class OtsProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void actualizarMateriales(Map<String,int> nuevoMateriales) {
-    nuevaOt.materiales = nuevoMateriales;
+  void actualizarMateriales(Map<String,String> nuevoMateriales) {
+    nuevaOt.materiales.addEntries(nuevoMateriales.entries);
     notifyListeners();
   }
 
@@ -140,7 +140,7 @@ class OtsProvider extends ChangeNotifier {
       recibe: 'Andres',
       alturas: 'No',
       estado: 'Pendiente',
-      materiales: {'Lamparas': 2, 'Tornillos': 4},
+      materiales: {'Lamparas': '2', 'Tornillos': '4'},
     ),
   ];
 

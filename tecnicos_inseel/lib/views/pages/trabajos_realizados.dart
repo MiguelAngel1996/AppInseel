@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tecnicos_inseel/controllers/ots_provider.dart';
-import 'package:tecnicos_inseel/views/pages/comentarios.dart';
+import 'package:tecnicos_inseel/views/pages/materiales.dart';
 
 class TrabajosRealizados extends StatefulWidget {
   const TrabajosRealizados({super.key});
@@ -84,7 +84,7 @@ class _TrabajosRealizadosState extends State<TrabajosRealizados> {
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => const Comentarios()));
+                  builder: (context) => const Materiales()));
         },
         tooltip: 'Siguiente',
         child: const Icon(Icons.arrow_forward_sharp),
