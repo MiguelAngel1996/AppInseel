@@ -22,7 +22,7 @@ class OtsProvider extends ChangeNotifier {
     recibe: '',
     alturas: 'No',
     estado: 'Pendiente',
-    materiales: {'Tornillos':'2'},
+    materiales: {},
   );
 
   void actualizarNumeroOt(String nuevoNumeroOt) {
