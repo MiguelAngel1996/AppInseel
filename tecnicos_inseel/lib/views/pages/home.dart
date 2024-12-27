@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tecnicos_inseel/controllers/ots_provider.dart';
+import 'package:tecnicos_inseel/views/components/vista_ot.dart';
 import 'package:tecnicos_inseel/views/pages/informacion_inicial.dart';
 
 class Home extends StatefulWidget {
@@ -19,6 +20,7 @@ class _HomeState extends State<Home> {
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(80), // Altura personalizada
         child: AppBar(
+          automaticallyImplyLeading: false,
           backgroundColor: Colors.transparent, // Fondo transparente
           elevation: 0, // Sin sombra
           flexibleSpace: Container(
@@ -62,8 +64,17 @@ class _HomeState extends State<Home> {
                           ),
                           child: ListTile(
                             title: Text(listasOt[index].motivo),
-                            subtitle: Text(listasOt[index].horaInicio),
+                            subtitle: Text(listasOt[index].fechaInicio),
                             trailing: Text(listasOt[index].numeroOt),
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) =>
+                                      VistaOt(ot: listasOt[index]),
+                                ),
+                              );
+                            },
                           ),
                         ),
                       );
@@ -76,8 +87,11 @@ class _HomeState extends State<Home> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: (){
-          Navigator.push(context, MaterialPageRoute(builder: (context) => const InformacionInicial()));
+        onPressed: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const InformacionInicial()));
         },
         tooltip: 'Nueva Orden',
         child: const Icon(Icons.add),

@@ -13,7 +13,7 @@ class _AgregarMaterialesState extends State<AgregarMateriales> {
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<OtsProvider>(context);
-    final nuevaOt = provider.nuevaOt;
+    //final nuevaOt = provider.nuevaOt;
     String item = '';
     String cantidad = '';
     return SizedBox(
