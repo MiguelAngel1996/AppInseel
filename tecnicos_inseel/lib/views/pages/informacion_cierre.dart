@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tecnicos_inseel/controllers/ots_provider.dart';
+import 'package:tecnicos_inseel/views/pages/home.dart';
 
 class InformacionCierre extends StatefulWidget {
   const InformacionCierre({super.key});
@@ -315,7 +316,14 @@ class _InformacionCierreState extends State<InformacionCierre> {
                             backgroundColor:
                                 Theme.of(context).colorScheme.primary,
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            provider.addOT();
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const Home()));
+                          },
                           child: Text(
                             'Terminar',
                             style: TextStyle(
