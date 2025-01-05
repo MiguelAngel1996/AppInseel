@@ -68,6 +68,7 @@ class _InformacionInicialState extends State<InformacionInicial> {
                     ),
                     const SizedBox(height: 8),
                     TextField(
+                      maxLength: 10,
                       decoration: InputDecoration(
                         filled: true,
                         fillColor:

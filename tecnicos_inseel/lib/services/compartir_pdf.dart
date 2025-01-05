@@ -60,8 +60,8 @@ Future<Uint8List> captureFullContent(GlobalKey key) async {
     final boundary = key.currentContext!.findRenderObject() as RenderRepaintBoundary;
 
     // Calcula el tamaño completo del contenido desplazable
-    final size = boundary.size;
-    print('Tamaño del contenido: $size');
+    //final size = boundary.size;
+    //print('Tamaño del contenido: $size');
 
     // Renderiza el contenido completo
     final image = await boundary.toImage(pixelRatio: 3.0); // Ajusta el pixelRatio si es necesario
