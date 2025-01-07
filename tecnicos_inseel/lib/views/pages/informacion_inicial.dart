@@ -122,6 +122,7 @@ class _InformacionInicialState extends State<InformacionInicial> {
                             SizedBox(
                               width: MediaQuery.of(context).size.width * 0.4,
                               child: TextField(
+                                maxLength: 10,
                                 decoration: InputDecoration(
                                   filled: true,
                                   fillColor: Theme.of(context)
@@ -176,6 +177,7 @@ class _InformacionInicialState extends State<InformacionInicial> {
                             SizedBox(
                               width: MediaQuery.of(context).size.width * 0.4,
                               child: TextField(
+                                maxLength: 10,
                                 decoration: InputDecoration(
                                   filled: true,
                                   fillColor: Theme.of(context)
@@ -226,6 +228,7 @@ class _InformacionInicialState extends State<InformacionInicial> {
                     ),
                     const SizedBox(height: 8),
                     TextField(
+                      maxLength: 20,
                       decoration: InputDecoration(
                         filled: true,
                         fillColor:
@@ -268,6 +271,7 @@ class _InformacionInicialState extends State<InformacionInicial> {
                     ),
                     const SizedBox(height: 8),
                     TextField(
+                      maxLength: 20,
                       decoration: InputDecoration(
                         filled: true,
                         fillColor:
@@ -310,6 +314,7 @@ class _InformacionInicialState extends State<InformacionInicial> {
                     ),
                     const SizedBox(height: 8),
                     TextField(
+                      maxLength: 20,
                       decoration: InputDecoration(
                         filled: true,
                         fillColor:

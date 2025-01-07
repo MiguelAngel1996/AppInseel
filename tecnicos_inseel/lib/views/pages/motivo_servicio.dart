@@ -62,6 +62,7 @@ class _MotivoServicioState extends State<MotivoServicio> {
                         BorderRadius.circular(30), // Bordes redondeados
                   ),
                   child: TextField(
+                    maxLength: 100,
                     maxLines: null, // Permite múltiples líneas dinámicas
                     //expands: true, // Ocupa todo el espacio disponible
                     textAlignVertical:

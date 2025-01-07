@@ -62,6 +62,7 @@ class _ComentariosState extends State<Comentarios> {
                         BorderRadius.circular(30), // Bordes redondeados
                   ),
                   child: TextField(
+                    maxLength: 500,
                     maxLines: null, // Permite múltiples líneas dinámicas
                     //expands: true, // Ocupa todo el espacio disponible
                     textAlignVertical:

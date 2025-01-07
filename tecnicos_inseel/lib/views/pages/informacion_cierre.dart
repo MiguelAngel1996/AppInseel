@@ -63,6 +63,7 @@ class _InformacionCierreState extends State<InformacionCierre> {
                     ),
                     const SizedBox(height: 8),
                     TextField(
+                      maxLength: 30,
                       decoration: InputDecoration(
                         filled: true,
                         fillColor: Theme.of(context).colorScheme.onSecondary,
@@ -99,6 +100,7 @@ class _InformacionCierreState extends State<InformacionCierre> {
                     ),
                     const SizedBox(height: 8),
                     TextField(
+                      maxLength: 30,
                       decoration: InputDecoration(
                         filled: true,
                         fillColor: Theme.of(context).colorScheme.onSecondary,
@@ -151,6 +153,7 @@ class _InformacionCierreState extends State<InformacionCierre> {
                             SizedBox(
                               width: MediaQuery.of(context).size.width * 0.4,
                               child: TextField(
+                                maxLength: 10,
                                 decoration: InputDecoration(
                                   filled: true,
                                   fillColor:
@@ -202,6 +205,7 @@ class _InformacionCierreState extends State<InformacionCierre> {
                             SizedBox(
                               width: MediaQuery.of(context).size.width * 0.4,
                               child: TextField(
+                                maxLength: 10,
                                 decoration: InputDecoration(
                                   filled: true,
                                   fillColor:
@@ -244,6 +248,7 @@ class _InformacionCierreState extends State<InformacionCierre> {
                     ),
                     const SizedBox(height: 8),
                     TextField(
+                      maxLength: 15,
                       decoration: InputDecoration(
                         filled: true,
                         fillColor: Theme.of(context).colorScheme.onSecondary,
@@ -280,6 +285,7 @@ class _InformacionCierreState extends State<InformacionCierre> {
                     ),
                     const SizedBox(height: 8),
                     TextField(
+                      maxLength: 30,
                       decoration: InputDecoration(
                         filled: true,
                         fillColor: Theme.of(context).colorScheme.onSecondary,
