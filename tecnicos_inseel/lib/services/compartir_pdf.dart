@@ -7,9 +7,18 @@ import 'package:flutter/services.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:path_provider/path_provider.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:share_plus/share_plus.dart';
 
 Future<void> generateAndSharePdf(Uint8List imageBytes, String fileName) async {
+  // Solicitar permisos
+  //await requestPermissions();
+
+  //await requestStoragePermission();
+  // Obtener el directorio de almacenamiento
+  //String path = await getStoragePath();
+  String filePath = '/storage/emulated/0/Download/$fileName.pdf';//Guarda en descargas -opción forzada por no obtener permisos aún
+
   final pdf = pw.Document();
 
   // Agregar la imagen al PDF
@@ -29,13 +38,45 @@ Future<void> generateAndSharePdf(Uint8List imageBytes, String fileName) async {
     ),
   );
 
-  // Guardar el PDF en el almacenamiento local
-  final output = await getTemporaryDirectory();
-final file = File("${output.path}\\$fileName.pdf");
+  // Guardar el PDF en el almacenamiento local cache
+  /* final output = await getTemporaryDirectory();
+  final file = File("${output.path}\\$fileName.pdf"); */
+
+  // Guardar el PDF en el almacenamiento local elegido
+  File file = File(filePath);
   await file.writeAsBytes(await pdf.save());
-  //print(file.path);
+  print(file.path);
   // Compartir el PDF
   await Share.shareXFiles([XFile(file.path)], text: 'Mira este PDF generado con Flutter!');
+}
+
+
+Future<String> getStoragePath() async {
+  // Obtiene el directorio de documentos
+  final Directory? directory = await getExternalStorageDirectory();
+  return directory!.path;
+}
+
+//solicita permisos para acceder al almacenamiento
+Future<void> requestPermissions() async {
+  var status = await Permission.storage.request();
+  if (!status.isGranted) {
+    // Manejar el caso en el que el usuario no otorgó permisos
+    print("Permiso denegado");
+  }
+}
+
+Future<void> requestStoragePermission() async {
+  var status = await Permission.storage.request();
+
+  if (status.isGranted) {
+    print("Permiso concedido");
+  } else if (status.isDenied) {
+    print("Permiso denegado");
+  } else if (status.isPermanentlyDenied) {
+    print("Permiso denegado permanentemente. Abre la configuración de la app.");
+    await openAppSettings();
+  }
 }
 
 //captura lo que se ve en pantalla

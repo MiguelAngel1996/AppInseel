@@ -384,7 +384,7 @@ class VistaOt extends StatelessWidget {
               await captureFullContent(_captureKey); //captura todo el contenido
 
           // Generar y compartir el PDF
-          await generateAndSharePdf(imageBytes, ot.numeroOt);
+          await generateAndSharePdf(imageBytes, '${ot.fechaInicio} - ${ot.numeroOt} - ${ot.sucursal} - ${ot.motivo}');
         },
         tooltip: 'Compartir',
         child: const Icon(Icons.share),

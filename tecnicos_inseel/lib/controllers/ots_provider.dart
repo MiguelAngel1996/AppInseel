@@ -144,7 +144,7 @@ class OtsProvider extends ChangeNotifier {
   final List<Ot> _listaOts = [
     Ot(
       numeroOt: '0001',
-      fechaInicio: '01/02/2024',
+      fechaInicio: '2024-12-18',
       horaInicio: '14:00',
       cliente: 'Terpel',
       sucursal: 'El cable',
@@ -155,7 +155,7 @@ class OtsProvider extends ChangeNotifier {
       comentarios: 'Se realizó el cambio de lamparas',
       tecnico1: 'Miguel',
       tecnico2: 'Angel',
-      fechaFin: '02/02/2024',
+      fechaFin: '2024-12-18',
       horaFin: '15:45',
       gastoReal: '3 horas',
       recibe: 'Andres',
