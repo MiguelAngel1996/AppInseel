@@ -71,7 +71,7 @@ class _TrabajosRealizadosState extends State<TrabajosRealizados> {
                       border: InputBorder.none, // Sin bordes predeterminados
                     ),
                     onChanged: (value) {
-                      nuevaOt.trabajos = value;
+                      nuevaOt.trabajos = value.replaceAll('\n', ' -').replaceAll(RegExp(r'\s+'), ' ').trim();
                     },
                   ),
                 ),

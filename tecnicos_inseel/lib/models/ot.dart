@@ -8,7 +8,7 @@ class Ot {
   String motivo;
   String diagnostico;
   String trabajos;
-  String comentarios;  
+  String comentarios;
   String tecnico1;
   String tecnico2;
   String fechaFin;
@@ -29,7 +29,7 @@ class Ot {
     required this.motivo,
     required this.diagnostico,
     required this.trabajos,
-    required this.comentarios,    
+    required this.comentarios,
     required this.tecnico1,
     required this.tecnico2,
     required this.fechaFin,
@@ -40,4 +40,5 @@ class Ot {
     required this.estado,
     required this.materiales,
   });
+
 }

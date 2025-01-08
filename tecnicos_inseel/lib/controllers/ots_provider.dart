@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:tecnicos_inseel/models/ot.dart';
 
 class OtsProvider extends ChangeNotifier {
-    
   Ot nuevaOt = Ot(
     numeroOt: '',
     fechaInicio: '',
@@ -24,6 +23,28 @@ class OtsProvider extends ChangeNotifier {
     estado: 'Pendiente',
     materiales: {},
   );
+
+  void limpiarOt (){
+    nuevaOt.numeroOt = '';
+    nuevaOt.fechaInicio = '';
+    nuevaOt.horaInicio = '';
+    nuevaOt.cliente = '';
+    nuevaOt.sucursal = '';
+    nuevaOt.ciudad = '';
+    nuevaOt.motivo = '';
+    nuevaOt.diagnostico = '';
+    nuevaOt.trabajos = '';
+    nuevaOt.comentarios = '';
+    nuevaOt.tecnico1 = '';
+    nuevaOt.tecnico2 = '';
+    nuevaOt.fechaFin = '';
+    nuevaOt.horaFin = '';
+    nuevaOt.gastoReal = '';
+    nuevaOt.recibe = '';
+    nuevaOt.alturas = 'No';
+    nuevaOt.estado = 'Pendiente';
+    nuevaOt.materiales = {};
+  }
 
   void actualizarNumeroOt(String nuevoNumeroOt) {
     nuevaOt.numeroOt = nuevoNumeroOt;
@@ -115,7 +136,7 @@ class OtsProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void actualizarMateriales(Map<String,String> nuevoMateriales) {
+  void actualizarMateriales(Map<String, String> nuevoMateriales) {
     nuevaOt.materiales.addEntries(nuevoMateriales.entries);
     notifyListeners();
   }
@@ -148,9 +169,27 @@ class OtsProvider extends ChangeNotifier {
     return _listaOts;
   }
 
-
   void addOT() {
-    _listaOts.add(nuevaOt);
+    _listaOts.add(Ot(
+        numeroOt: nuevaOt.numeroOt,
+        fechaInicio: nuevaOt.fechaInicio,
+        horaInicio: nuevaOt.horaInicio,
+        cliente: nuevaOt.cliente,
+        sucursal: nuevaOt.sucursal,
+        ciudad: nuevaOt.ciudad,
+        motivo: nuevaOt.motivo,
+        diagnostico: nuevaOt.diagnostico,
+        trabajos: nuevaOt.trabajos,
+        comentarios: nuevaOt.comentarios,
+        tecnico1: nuevaOt.tecnico1,
+        tecnico2: nuevaOt.tecnico2,
+        fechaFin: nuevaOt.fechaFin,
+        horaFin: nuevaOt.horaFin,
+        gastoReal: nuevaOt.gastoReal,
+        recibe: nuevaOt.recibe,
+        alturas: nuevaOt.alturas,
+        estado: nuevaOt.estado,
+        materiales: nuevaOt.materiales));
     notifyListeners();
   }
 }

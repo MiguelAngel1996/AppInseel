@@ -82,6 +82,7 @@ class _MaterialesState extends State<Materiales> {
                 child: ElevatedButton(
                   onPressed: () {
                     showModalBottomSheet(
+                      isScrollControlled: true,
                       context: context,
                       builder: (context) {
                         return const AgregarMateriales();

@@ -88,6 +88,7 @@ class _HomeState extends State<Home> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
+          provider.limpiarOt();
           Navigator.push(
               context,
               MaterialPageRoute(

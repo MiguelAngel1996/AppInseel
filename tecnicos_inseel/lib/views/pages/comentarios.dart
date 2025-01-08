@@ -71,7 +71,7 @@ class _ComentariosState extends State<Comentarios> {
                       border: InputBorder.none, // Sin bordes predeterminados
                     ),
                     onChanged: (value) {
-                      nuevaOt.comentarios = value;
+                      nuevaOt.comentarios = value.replaceAll('\n', ' -').replaceAll(RegExp(r'\s+'), ' ').trim();
                     },
                   ),
                 ),

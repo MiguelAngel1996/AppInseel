@@ -63,7 +63,7 @@ class _DiagnosticoInicialState extends State<DiagnosticoInicial> {
                   ),
                   child: TextField(
                     maxLength: 100,
-                    maxLines: null, // Permite múltiples líneas dinámicas
+                    maxLines: null,// Permite múltiples líneas dinámicas
                     //expands: true, // Ocupa todo el espacio disponible
                     textAlignVertical:
                         TextAlignVertical.top, // Alineación superior
@@ -71,7 +71,7 @@ class _DiagnosticoInicialState extends State<DiagnosticoInicial> {
                       border: InputBorder.none, // Sin bordes predeterminados
                     ),
                     onChanged: (value) {
-                      nuevaOt.diagnostico = value;
+                      nuevaOt.diagnostico = value.replaceAll('\n', ' -').replaceAll(RegExp(r'\s+'), ' ').trim();
                     },
                   ),
                 ),
