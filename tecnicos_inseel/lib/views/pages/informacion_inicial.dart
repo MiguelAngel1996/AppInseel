@@ -30,13 +30,28 @@ class _InformacionInicialState extends State<InformacionInicial> {
               ),
             ),
             child: Center(
-              child: Text(
-                'Información Inicial',
-                style: TextStyle(
-                  fontSize: 24,
-                  color: Theme.of(context).colorScheme.primary,
-                  fontWeight: FontWeight.bold,
-                ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Text(
+                    'Información Inicial',
+                    style: TextStyle(
+                      fontSize: 24,
+                      color: Theme.of(context).colorScheme.primary,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    'Página 1 de 8',
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 12,
+                  ),
+                ],
               ),
             ),
           ),
@@ -51,35 +66,29 @@ class _InformacionInicialState extends State<InformacionInicial> {
               padding: const EdgeInsets.all(30),
               child: SizedBox(
                 width: double.infinity,
-                child: Column(                      
+                child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       'O.T. #:',
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodySmall!
-                          .copyWith(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20,
-                              color: Theme.of(context)
-                                  .colorScheme
-                                  .onSecondary),
+                      style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                          color: Theme.of(context).colorScheme.onSecondary),
                     ),
                     const SizedBox(height: 8),
                     TextField(
                       maxLength: 10,
                       decoration: InputDecoration(
                         filled: true,
-                        fillColor:
-                            Theme.of(context).colorScheme.onSecondary,
+                        fillColor: Theme.of(context).colorScheme.onSecondary,
                         contentPadding: const EdgeInsets.symmetric(
                           vertical: 16.0,
                           horizontal: 20.0,
                         ), // Padding interno del TextField
                         enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(
-                              30), // Bordes redondeados
+                          borderRadius:
+                              BorderRadius.circular(30), // Bordes redondeados
                           borderSide: BorderSide.none, // Sin borde
                         ),
                         focusedBorder: OutlineInputBorder(
@@ -125,19 +134,16 @@ class _InformacionInicialState extends State<InformacionInicial> {
                                 maxLength: 10,
                                 decoration: InputDecoration(
                                   filled: true,
-                                  fillColor: Theme.of(context)
-                                      .colorScheme
-                                      .onSecondary,
-                                  contentPadding:
-                                      const EdgeInsets.symmetric(
+                                  fillColor:
+                                      Theme.of(context).colorScheme.onSecondary,
+                                  contentPadding: const EdgeInsets.symmetric(
                                     vertical: 16.0,
                                     horizontal: 20.0,
                                   ), // Padding interno del TextField
                                   enabledBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(
                                         30), // Bordes redondeados
-                                    borderSide:
-                                        BorderSide.none, // Sin borde
+                                    borderSide: BorderSide.none, // Sin borde
                                   ),
                                   focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(30),
@@ -180,19 +186,16 @@ class _InformacionInicialState extends State<InformacionInicial> {
                                 maxLength: 10,
                                 decoration: InputDecoration(
                                   filled: true,
-                                  fillColor: Theme.of(context)
-                                      .colorScheme
-                                      .onSecondary,
-                                  contentPadding:
-                                      const EdgeInsets.symmetric(
+                                  fillColor:
+                                      Theme.of(context).colorScheme.onSecondary,
+                                  contentPadding: const EdgeInsets.symmetric(
                                     vertical: 16.0,
                                     horizontal: 20.0,
                                   ), // Padding interno del TextField
                                   enabledBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(
                                         30), // Bordes redondeados
-                                    borderSide:
-                                        BorderSide.none, // Sin borde
+                                    borderSide: BorderSide.none, // Sin borde
                                   ),
                                   focusedBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(30),
@@ -216,30 +219,24 @@ class _InformacionInicialState extends State<InformacionInicial> {
                     const SizedBox(height: 10),
                     Text(
                       'Cliente:',
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodySmall!
-                          .copyWith(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20,
-                              color: Theme.of(context)
-                                  .colorScheme
-                                  .onSecondary),
+                      style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                          color: Theme.of(context).colorScheme.onSecondary),
                     ),
                     const SizedBox(height: 8),
                     TextField(
                       maxLength: 20,
                       decoration: InputDecoration(
                         filled: true,
-                        fillColor:
-                            Theme.of(context).colorScheme.onSecondary,
+                        fillColor: Theme.of(context).colorScheme.onSecondary,
                         contentPadding: const EdgeInsets.symmetric(
                           vertical: 16.0,
                           horizontal: 20.0,
                         ), // Padding interno del TextField
                         enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(
-                              30), // Bordes redondeados
+                          borderRadius:
+                              BorderRadius.circular(30), // Bordes redondeados
                           borderSide: BorderSide.none, // Sin borde
                         ),
                         focusedBorder: OutlineInputBorder(
@@ -259,30 +256,24 @@ class _InformacionInicialState extends State<InformacionInicial> {
                     const SizedBox(height: 10),
                     Text(
                       'Sucursal:',
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodySmall!
-                          .copyWith(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20,
-                              color: Theme.of(context)
-                                  .colorScheme
-                                  .onSecondary),
+                      style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                          color: Theme.of(context).colorScheme.onSecondary),
                     ),
                     const SizedBox(height: 8),
                     TextField(
                       maxLength: 20,
                       decoration: InputDecoration(
                         filled: true,
-                        fillColor:
-                            Theme.of(context).colorScheme.onSecondary,
+                        fillColor: Theme.of(context).colorScheme.onSecondary,
                         contentPadding: const EdgeInsets.symmetric(
                           vertical: 16.0,
                           horizontal: 20.0,
                         ), // Padding interno del TextField
                         enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(
-                              30), // Bordes redondeados
+                          borderRadius:
+                              BorderRadius.circular(30), // Bordes redondeados
                           borderSide: BorderSide.none, // Sin borde
                         ),
                         focusedBorder: OutlineInputBorder(
@@ -302,30 +293,24 @@ class _InformacionInicialState extends State<InformacionInicial> {
                     const SizedBox(height: 10),
                     Text(
                       'Ciudad:',
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodySmall!
-                          .copyWith(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20,
-                              color: Theme.of(context)
-                                  .colorScheme
-                                  .onSecondary),
+                      style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                          color: Theme.of(context).colorScheme.onSecondary),
                     ),
                     const SizedBox(height: 8),
                     TextField(
                       maxLength: 20,
                       decoration: InputDecoration(
                         filled: true,
-                        fillColor:
-                            Theme.of(context).colorScheme.onSecondary,
+                        fillColor: Theme.of(context).colorScheme.onSecondary,
                         contentPadding: const EdgeInsets.symmetric(
                           vertical: 16.0,
                           horizontal: 20.0,
                         ), // Padding interno del TextField
                         enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(
-                              30), // Bordes redondeados
+                          borderRadius:
+                              BorderRadius.circular(30), // Bordes redondeados
                           borderSide: BorderSide.none, // Sin borde
                         ),
                         focusedBorder: OutlineInputBorder(
@@ -352,7 +337,32 @@ class _InformacionInicialState extends State<InformacionInicial> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => const MotivoServicio()));
+          //Navigator.push(context, MaterialPageRoute(builder: (context) => const MotivoServicio()));
+          Navigator.push(
+            context,
+            PageRouteBuilder(
+              transitionDuration: const Duration(milliseconds: 600),
+              reverseTransitionDuration: const Duration(milliseconds: 500),
+              pageBuilder: (context, animation, secondaryAnimation) =>
+                  const MotivoServicio(),
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) {
+                const begin =
+                    Offset(1.0, 0.0); // Empieza fuera de la pantalla (derecha)
+                const end = Offset.zero; // Termina en su posición normal
+                const curve = Curves.easeInOut;
+
+                var tween = Tween(begin: begin, end: end)
+                    .chain(CurveTween(curve: curve));
+                var offsetAnimation = animation.drive(tween);
+
+                return SlideTransition(
+                  position: offsetAnimation,
+                  child: child,
+                );
+              },
+            ),
+          );
         },
         tooltip: 'Siguiente',
         child: const Icon(Icons.arrow_forward_sharp),

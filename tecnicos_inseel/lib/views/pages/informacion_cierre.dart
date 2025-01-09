@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tecnicos_inseel/controllers/ots_provider.dart';
 import 'package:tecnicos_inseel/views/components/vista_ot.dart';
-import 'package:tecnicos_inseel/views/pages/home.dart';
 
 class InformacionCierre extends StatefulWidget {
   const InformacionCierre({super.key});
@@ -32,13 +31,28 @@ class _InformacionCierreState extends State<InformacionCierre> {
               ),
             ),
             child: Center(
-              child: Text(
-                'Información de Cierre',
-                style: TextStyle(
-                  fontSize: 24,
-                  color: Theme.of(context).colorScheme.primary,
-                  fontWeight: FontWeight.bold,
-                ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Text(
+                    'Información de Cierre',
+                    style: TextStyle(
+                      fontSize: 24,
+                      color: Theme.of(context).colorScheme.primary,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    'Página 8 de 8',
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 12,
+                  ),
+                ],
               ),
             ),
           ),

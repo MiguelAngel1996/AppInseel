@@ -30,13 +30,28 @@ class _DiagnosticoInicialState extends State<DiagnosticoInicial> {
               ),
             ),
             child: Center(
-              child: Text(
-                'Diagnóstico inicial',
-                style: TextStyle(
-                  fontSize: 24,
-                  color: Theme.of(context).colorScheme.primary,
-                  fontWeight: FontWeight.bold,
-                ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Text(
+                    'Diagnóstico inicial',
+                    style: TextStyle(
+                      fontSize: 24,
+                      color: Theme.of(context).colorScheme.primary,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    'Página 3 de 8',
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 12,
+                  ),
+                ],
               ),
             ),
           ),
@@ -83,9 +98,30 @@ class _DiagnosticoInicialState extends State<DiagnosticoInicial> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => const TrabajosRealizados()));
+            context,
+            PageRouteBuilder(
+              transitionDuration: const Duration(milliseconds: 600),
+              reverseTransitionDuration: const Duration(milliseconds: 500),
+              pageBuilder: (context, animation, secondaryAnimation) =>
+                  const TrabajosRealizados(),
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) {
+                const begin =
+                    Offset(1.0, 0.0); // Empieza fuera de la pantalla (derecha)
+                const end = Offset.zero; // Termina en su posición normal
+                const curve = Curves.easeInOut;
+
+                var tween = Tween(begin: begin, end: end)
+                    .chain(CurveTween(curve: curve));
+                var offsetAnimation = animation.drive(tween);
+
+                return SlideTransition(
+                  position: offsetAnimation,
+                  child: child,
+                );
+              },
+            ),
+          );
         },
         tooltip: 'Siguiente',
         child: const Icon(Icons.arrow_forward_sharp),
