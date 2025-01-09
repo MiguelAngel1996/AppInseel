@@ -170,7 +170,7 @@ class OtsProvider extends ChangeNotifier {
   }
 
   void addOT() {
-    _listaOts.add(Ot(
+    _listaOts.insert(0,Ot(
         numeroOt: nuevaOt.numeroOt,
         fechaInicio: nuevaOt.fechaInicio,
         horaInicio: nuevaOt.horaInicio,

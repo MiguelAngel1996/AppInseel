@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tecnicos_inseel/controllers/ots_provider.dart';
+import 'package:tecnicos_inseel/views/components/vista_ot.dart';
 import 'package:tecnicos_inseel/views/pages/home.dart';
 
 class InformacionCierre extends StatefulWidget {
@@ -15,6 +16,7 @@ class _InformacionCierreState extends State<InformacionCierre> {
   Widget build(BuildContext context) {
     final provider = Provider.of<OtsProvider>(context);
     final nuevaOt = provider.nuevaOt;
+    final listasOt = provider.listasOt;
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(80), // Altura personalizada
@@ -325,10 +327,11 @@ class _InformacionCierreState extends State<InformacionCierre> {
                           onPressed: () {
                             provider.addOT();
                             Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        const Home()));
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => VistaOt(ot: listasOt[0]),
+                              ),
+                            );
                           },
                           child: Text(
                             'Terminar',

@@ -50,35 +50,41 @@ class _HomeState extends State<Home> {
           child: Column(
             children: [
               Flexible(
-                child: Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: ListView.builder(
-                    itemCount: listasOt.length,
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: Theme.of(context).colorScheme.onSecondary,
-                            borderRadius: BorderRadius.circular(20),
+                child: GlowingOverscrollIndicator(
+                  axisDirection: AxisDirection.down,
+                  color: Theme.of(context).colorScheme.primary,
+                  child: Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: ListView.builder(
+                      //physics: BouncingScrollPhysics(),
+                      itemCount: listasOt.length,
+                      itemBuilder: (context, index) {
+                        // Construcción invertida
+                        return Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Theme.of(context).colorScheme.onSecondary,
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: ListTile(
+                              title: Text(listasOt[index].motivo),
+                              subtitle: Text(listasOt[index].fechaInicio),
+                              trailing: Text(listasOt[index].numeroOt),
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        VistaOt(ot: listasOt[index]),
+                                  ),
+                                );
+                              },
+                            ),
                           ),
-                          child: ListTile(
-                            title: Text(listasOt[index].motivo),
-                            subtitle: Text(listasOt[index].fechaInicio),
-                            trailing: Text(listasOt[index].numeroOt),
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      VistaOt(ot: listasOt[index]),
-                                ),
-                              );
-                            },
-                          ),
-                        ),
-                      );
-                    },
+                        );
+                      },
+                    ),
                   ),
                 ),
               ),
