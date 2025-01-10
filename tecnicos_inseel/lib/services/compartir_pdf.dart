@@ -10,15 +10,24 @@ import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:share_plus/share_plus.dart';
 
-Future<void> generateAndSharePdf(Uint8List imageBytes, String fileName) async {
+Future<void> generateAndSharePdf(Uint8List imageBytes, String fileName, bool option) async {
+
+    // Guardar el PDF en el almacenamiento local cache para compartir
+  final output = await getTemporaryDirectory();
+  String filePath = '${output.path}/$fileName.pdf';
+
+  //opción true guarda en descargas, false comparte
+  option ? filePath = '/storage/emulated/0/Download/$fileName.pdf' : null;//Guarda en descargas -opción forzada por no obtener permisos aún
+
+
   // Solicitar permisos
   //await requestPermissions();
-
-  //await requestStoragePermission();
   // Obtener el directorio de almacenamiento
-  //String path = await getStoragePath();
-  String filePath = '/storage/emulated/0/Download/$fileName.pdf';//Guarda en descargas -opción forzada por no obtener permisos aún
-
+  //String filePath = await getStoragePath();
+  //await requestStoragePermission();
+  
+  
+  
   final pdf = pw.Document();
 
   // Agregar la imagen al PDF
@@ -38,17 +47,15 @@ Future<void> generateAndSharePdf(Uint8List imageBytes, String fileName) async {
     ),
   );
 
-  // Guardar el PDF en el almacenamiento local cache
-  /* final output = await getTemporaryDirectory();
-  final file = File("${output.path}\\$fileName.pdf"); */
 
   // Guardar el PDF en el almacenamiento local elegido
   File file = File(filePath);
   await file.writeAsBytes(await pdf.save());
-  print(file.path);
   // Compartir el PDF
-  await Share.shareXFiles([XFile(file.path)], text: 'Mira este PDF generado con Flutter!');
+  //opción true guarda en descargas, false comparte
+  option ? null : await Share.shareXFiles([XFile(file.path)]);
 }
+
 
 
 Future<String> getStoragePath() async {

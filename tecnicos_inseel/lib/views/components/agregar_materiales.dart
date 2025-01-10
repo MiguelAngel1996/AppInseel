@@ -44,6 +44,7 @@ class _AgregarMaterialesState extends State<AgregarMateriales> {
               height: 10,
             ),
             TextField(
+              autofocus: true,
               textAlign: TextAlign.center,
               decoration: InputDecoration(
                 filled: true,

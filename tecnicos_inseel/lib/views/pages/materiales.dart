@@ -16,7 +16,7 @@ class _MaterialesState extends State<Materiales> {
   Widget build(BuildContext context) {
     final provider = Provider.of<OtsProvider>(context);
     final nuevaOt = provider.nuevaOt;
-    final List<MapEntry<String, String>> listaMateriales =
+    List<MapEntry<String, String>> listaMateriales =
         nuevaOt.materiales.entries.toList();
     return Scaffold(
       appBar: PreferredSize(
@@ -79,12 +79,17 @@ class _MaterialesState extends State<Materiales> {
                             borderRadius: BorderRadius.circular(20),
                           ),
                           child: ListTile(
-                            title: Text(listaMateriales[index].key),
-                            //subtitle: Text(listaMateriales[index].value),
-                            trailing: Text(
+                            leading: Text(
                               listaMateriales[index].value,
                               style: const TextStyle(fontSize: 15),
                             ),
+                            title: Text(listaMateriales[index].key),
+                            //subtitle: Text(listaMateriales[index].value),
+                            trailing: IconButton(onPressed: (){
+                              setState(() {
+                                nuevaOt.materiales.remove(listaMateriales[index].key);                                
+                              });
+                            }, icon: Icon(Icons.delete),)
                           ),
                         ),
                       );
@@ -97,6 +102,10 @@ class _MaterialesState extends State<Materiales> {
                 child: ElevatedButton(
                   onPressed: () {
                     showModalBottomSheet(
+                      sheetAnimationStyle: AnimationStyle(
+                        duration: Duration(milliseconds: 700),
+                        reverseDuration: Duration(milliseconds: 700),
+                      ),
                       isScrollControlled: true,
                       context: context,
                       builder: (context) {

@@ -11,6 +11,8 @@ class InformacionCierre extends StatefulWidget {
 }
 
 class _InformacionCierreState extends State<InformacionCierre> {
+  final TextEditingController _dateController = TextEditingController();
+  final TextEditingController _timeController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<OtsProvider>(context);
@@ -169,8 +171,10 @@ class _InformacionCierreState extends State<InformacionCierre> {
                             SizedBox(
                               width: MediaQuery.of(context).size.width * 0.4,
                               child: TextField(
-                                maxLength: 10,
+                                controller: _dateController,
+                                readOnly: true,
                                 decoration: InputDecoration(
+                                  prefixIcon: Icon(Icons.calendar_today),
                                   filled: true,
                                   fillColor:
                                       Theme.of(context).colorScheme.onSecondary,
@@ -193,8 +197,20 @@ class _InformacionCierreState extends State<InformacionCierre> {
                                     ),
                                   ),
                                 ),
-                                onChanged: (value) {
-                                  nuevaOt.fechaFin = value;
+                                onTap: () async {
+                                  DateTime? selectedDate = await showDatePicker(
+                                    context: context,
+                                    initialDate: DateTime.now(),
+                                    firstDate: DateTime(2000),
+                                    lastDate: DateTime(2100),
+                                  );
+                                  if (selectedDate != null) {
+                                    setState(() {
+                                      _dateController.text =
+                                          "${selectedDate.year}-${selectedDate.month.toString().padLeft(2, '0')}-${selectedDate.day.toString().padLeft(2, '0')}";
+                                          nuevaOt.fechaFin = _dateController.text;
+                                    });
+                                  }
                                 },
                               ),
                             ),
@@ -221,8 +237,10 @@ class _InformacionCierreState extends State<InformacionCierre> {
                             SizedBox(
                               width: MediaQuery.of(context).size.width * 0.4,
                               child: TextField(
-                                maxLength: 10,
+                                controller: _timeController,
+                                readOnly: true,
                                 decoration: InputDecoration(
+                                  prefixIcon: Icon(Icons.access_time),
                                   filled: true,
                                   fillColor:
                                       Theme.of(context).colorScheme.onSecondary,
@@ -245,8 +263,32 @@ class _InformacionCierreState extends State<InformacionCierre> {
                                     ),
                                   ),
                                 ),
-                                onChanged: (value) {
-                                  nuevaOt.horaFin = value;
+                                onTap: () async {
+                                  TimeOfDay? selectedTime =
+                                      await showTimePicker(
+                                    context: context,
+                                    initialTime: TimeOfDay.now(),
+                                    initialEntryMode: TimePickerEntryMode.input,
+                                    builder:
+                                        (BuildContext context, Widget? child) {
+                                      return MediaQuery(
+                                        data: MediaQuery.of(context).copyWith(
+                                          alwaysUse24HourFormat:
+                                              true, // Formato de 24 horas
+                                        ),
+                                        child: child!,
+                                      );
+                                    },
+                                  );
+
+                                  if (selectedTime != null) {
+                                    // Actualizamos el controlador con la hora seleccionada
+                                    setState(() {
+                                      _timeController.text =
+                                          "${selectedTime.hour.toString().padLeft(2, '0')}:${selectedTime.minute.toString().padLeft(2, '0')}";
+                                          nuevaOt.horaFin = _timeController.text;
+                                    });
+                                  }
                                 },
                               ),
                             ),

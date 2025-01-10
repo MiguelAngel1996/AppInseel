@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:tecnicos_inseel/controllers/ots_provider.dart';
 import 'package:tecnicos_inseel/views/pages/home.dart';
 import 'package:provider/provider.dart';
-
 
 void main() {
   runApp(const TecnicosInseel());
@@ -11,7 +11,6 @@ void main() {
 class TecnicosInseel extends StatelessWidget {
   const TecnicosInseel({super.key});
 
-  
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -22,18 +21,26 @@ class TecnicosInseel extends StatelessWidget {
         theme: ThemeData(
           fontFamily: 'oxanium',
           colorScheme: const ColorScheme(
-            brightness: Brightness.light,
-            primary: Color(0xff595959),
-            onPrimary: Color(0xfff2f2f2),
-            secondary: Color(0xfff2811d),
-            onSecondary: Color(0xfff2f2f2),
-            error: Colors.red,
-            onError: Colors.white,
-            surface: Color.fromARGB(255, 255, 197, 126),
-            onSurface: Color(0xff595959)
-            ),
+              brightness: Brightness.light,
+              primary: Color(0xff595959),
+              onPrimary: Color(0xfff2f2f2),
+              secondary: Color(0xfff2811d),
+              onSecondary: Color(0xfff2f2f2),
+              error: Colors.red,
+              onError: Colors.white,
+              surface: Color.fromARGB(255, 255, 197, 126),
+              onSurface: Color(0xff595959)),
           useMaterial3: true,
         ),
+        localizationsDelegates: [
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: [
+          Locale('es', 'ES'), // Español
+        ],
+        locale: Locale('es', 'ES'), // Establece español como predeterminado
         home: const Home(),
       ),
     );

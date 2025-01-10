@@ -402,14 +402,18 @@ class _VistaOtState extends State<VistaOt> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20), // Bordes redondeados
                 ),
-                //fixedSize: const Size(56, 56),
               ),
-              child: Padding(
-                padding: const EdgeInsets.all(16),
-                child: Icon(
-                  Icons.home,
-                  color: Theme.of(context).colorScheme.onPrimary,
-                  size: 25,
+              child: SizedBox(
+                height: 50,
+                child: Column(
+                  children: [
+                    Icon(
+                      Icons.home,
+                      color: Theme.of(context).colorScheme.onPrimary,
+                      size: 25,
+                    ),
+                    Text('Inicio')
+                  ],
                 ),
               ),
               onPressed: () {
@@ -429,12 +433,17 @@ class _VistaOtState extends State<VistaOt> {
                 ),
                 //fixedSize: const Size(100, 70),
               ),
-              child: Padding(
-                padding: const EdgeInsets.all(16),
-                child: Icon(
-                  Icons.share,
-                  color: Theme.of(context).colorScheme.onPrimary,
-                  size: 25,
+              child: SizedBox(
+                height: 50,
+                child: Column(
+                  children: [
+                    Icon(
+                      Icons.download,
+                      color: Theme.of(context).colorScheme.onPrimary,
+                      size: 25,
+                    ),
+                    Text('Descargar')
+                  ],
                 ),
               ),
               onPressed: () async {
@@ -449,12 +458,71 @@ class _VistaOtState extends State<VistaOt> {
                       _captureKey); //captura todo el contenido
 
                   // Generar y compartir el PDF
-                  await generateAndSharePdf(imageBytes,
-                      '${widget.ot.fechaInicio} - ${widget.ot.numeroOt} - ${widget.ot.sucursal} - ${widget.ot.motivo}');
+                  await generateAndSharePdf(
+                    imageBytes,
+                    '${widget.ot.fechaInicio} - ${widget.ot.numeroOt} - ${widget.ot.sucursal} - ${widget.ot.motivo}',
+                    true,
+                  );
 
                   // Muestra un mensaje de éxito
                   ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text("PDF generado en Descargas")),
+                    SnackBar(content: Text("PDF guardado en Descargas")),
+                  );
+                } catch (e) {
+                  // Manejo de errores
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text("Error al generar el PDF: $e")),
+                  );
+                } finally {
+                  setState(() {
+                    generando = false; // Oculta el indicador de carga
+                  });
+                }
+              },
+            ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                foregroundColor: Theme.of(context).colorScheme.onPrimary,
+                backgroundColor: Theme.of(context).colorScheme.primary,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20), // Bordes redondeados
+                ),
+                //fixedSize: const Size(100, 70),
+              ),
+              child: SizedBox(
+                height: 50,
+                child: Column(
+                  children: [
+                    Icon(
+                      Icons.share,
+                      color: Theme.of(context).colorScheme.onPrimary,
+                      size: 25,
+                    ),
+                    Text('Compartir')
+                  ],
+                ),
+              ),
+              onPressed: () async {
+                setState(() {
+                  generando = true; // Muestra el indicador de carga
+                });
+
+                try {
+                  // Capturar el widget como imagen
+                  //final imageBytes = await captureWidgetToImage(_captureKey);//captura lo que se ve en pantalla
+                  final imageBytes = await captureFullContent(
+                      _captureKey); //captura todo el contenido
+
+                  // Generar y compartir el PDF
+                  await generateAndSharePdf(
+                    imageBytes,
+                    '${widget.ot.fechaInicio} - ${widget.ot.numeroOt} - ${widget.ot.sucursal} - ${widget.ot.motivo}',
+                    false,
+                  );
+
+                  // Muestra un mensaje de éxito
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text("PDF compartido")),
                   );
                 } catch (e) {
                   // Manejo de errores
