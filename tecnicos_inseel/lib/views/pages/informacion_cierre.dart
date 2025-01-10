@@ -208,7 +208,7 @@ class _InformacionCierreState extends State<InformacionCierre> {
                                     setState(() {
                                       _dateController.text =
                                           "${selectedDate.year}-${selectedDate.month.toString().padLeft(2, '0')}-${selectedDate.day.toString().padLeft(2, '0')}";
-                                          nuevaOt.fechaFin = _dateController.text;
+                                      nuevaOt.fechaFin = _dateController.text;
                                     });
                                   }
                                 },
@@ -286,7 +286,7 @@ class _InformacionCierreState extends State<InformacionCierre> {
                                     setState(() {
                                       _timeController.text =
                                           "${selectedTime.hour.toString().padLeft(2, '0')}:${selectedTime.minute.toString().padLeft(2, '0')}";
-                                          nuevaOt.horaFin = _timeController.text;
+                                      nuevaOt.horaFin = _timeController.text;
                                     });
                                   }
                                 },
@@ -385,7 +385,8 @@ class _InformacionCierreState extends State<InformacionCierre> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => VistaOt(ot: listasOt[0]),
+                                builder: (context) =>
+                                    VistaOt(ot: listasOt[0], index: 0),
                               ),
                             );
                           },

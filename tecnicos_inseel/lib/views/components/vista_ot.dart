@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:tecnicos_inseel/controllers/ots_provider.dart';
 //import 'package:provider/provider.dart';
 //import 'package:tecnicos_inseel/controllers/ots_provider.dart';
 import 'package:tecnicos_inseel/models/ot.dart';
@@ -12,14 +14,18 @@ final GlobalKey _captureKey = GlobalKey();
 
 class VistaOt extends StatefulWidget {
   final Ot ot;
-  const VistaOt({super.key, required this.ot});
+  final int index;
+  const VistaOt({super.key, required this.ot, required this.index});
 
   @override
   State<VistaOt> createState() => _VistaOtState();
 }
 
+bool eliminar = false;
+
 class _VistaOtState extends State<VistaOt> {
   bool generando = false;
+
   @override
   Widget build(BuildContext context) {
     List<MapEntry<String, String>> pares = widget.ot.materiales.entries
@@ -27,8 +33,8 @@ class _VistaOtState extends State<VistaOt> {
     while (pares.length < 10) {
       pares.add(const MapEntry('', ''));
     }
-    //final provider = Provider.of<OtsProvider>(context);
-    //final listasOt = provider.listasOt;
+    final provider = Provider.of<OtsProvider>(context);
+    final listasOt = provider.listasOt;
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(80), // Altura personalizada
@@ -412,7 +418,7 @@ class _VistaOtState extends State<VistaOt> {
                       color: Theme.of(context).colorScheme.onPrimary,
                       size: 25,
                     ),
-                    Text('Inicio')
+                    //Text('Inicio')
                   ],
                 ),
               ),
@@ -442,7 +448,7 @@ class _VistaOtState extends State<VistaOt> {
                       color: Theme.of(context).colorScheme.onPrimary,
                       size: 25,
                     ),
-                    Text('Descargar')
+                    //Text('Descargar')
                   ],
                 ),
               ),
@@ -450,7 +456,15 @@ class _VistaOtState extends State<VistaOt> {
                 setState(() {
                   generando = true; // Muestra el indicador de carga
                 });
-
+                final successfulMessage =
+                    ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text("PDF guardado en Descargas")),
+                );
+                final e = '';
+                final errorMessage = // Manejo de errores
+                    ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text("Error al generar el PDF: $e")),
+                );
                 try {
                   // Capturar el widget como imagen
                   //final imageBytes = await captureWidgetToImage(_captureKey);//captura lo que se ve en pantalla
@@ -463,16 +477,9 @@ class _VistaOtState extends State<VistaOt> {
                     '${widget.ot.fechaInicio} - ${widget.ot.numeroOt} - ${widget.ot.sucursal} - ${widget.ot.motivo}',
                     true,
                   );
-
-                  // Muestra un mensaje de éxito
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text("PDF guardado en Descargas")),
-                  );
+                  successfulMessage;
                 } catch (e) {
-                  // Manejo de errores
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text("Error al generar el PDF: $e")),
-                  );
+                  errorMessage;
                 } finally {
                   setState(() {
                     generando = false; // Oculta el indicador de carga
@@ -498,7 +505,7 @@ class _VistaOtState extends State<VistaOt> {
                       color: Theme.of(context).colorScheme.onPrimary,
                       size: 25,
                     ),
-                    Text('Compartir')
+                    //Text('Compartir')
                   ],
                 ),
               ),
@@ -506,7 +513,15 @@ class _VistaOtState extends State<VistaOt> {
                 setState(() {
                   generando = true; // Muestra el indicador de carga
                 });
-
+                final successfulMessage =
+                    ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text("PDF compartido con éxito")),
+                );
+                final e = '';
+                final errorMessage = // Manejo de errores
+                    ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text("Error al generar el PDF: $e")),
+                );
                 try {
                   // Capturar el widget como imagen
                   //final imageBytes = await captureWidgetToImage(_captureKey);//captura lo que se ve en pantalla
@@ -519,26 +534,75 @@ class _VistaOtState extends State<VistaOt> {
                     '${widget.ot.fechaInicio} - ${widget.ot.numeroOt} - ${widget.ot.sucursal} - ${widget.ot.motivo}',
                     false,
                   );
-
-                  // Muestra un mensaje de éxito
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text("PDF compartido")),
-                  );
+                  successfulMessage;
                 } catch (e) {
-                  // Manejo de errores
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text("Error al generar el PDF: $e")),
-                  );
+                  errorMessage;
                 } finally {
                   setState(() {
                     generando = false; // Oculta el indicador de carga
                   });
                 }
               },
-            )
+            ),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                foregroundColor: Theme.of(context).colorScheme.onPrimary,
+                backgroundColor: Theme.of(context).colorScheme.primary,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20), // Bordes redondeados
+                ),
+                //fixedSize: const Size(100, 70),
+              ),
+              child: SizedBox(
+                height: 50,
+                child: Column(
+                  children: [
+                    Icon(
+                      Icons.delete,
+                      color: Theme.of(context).colorScheme.onPrimary,
+                      size: 25,
+                    ),
+                    //Text('Eliminar')
+                  ],
+                ),
+              ),
+              onPressed: () {
+                _showDialog(context, listasOt);
+              },
+            ),
           ],
         ),
       ),
+    );
+  }
+
+  void _showDialog(BuildContext context, listasOt) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Eliminar'),
+          content: Text('¿Está seguro de eliminar esta OT?'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Cierra el dialogo
+              },
+              child: Text('Cerrar'),
+            ),
+            TextButton(
+                onPressed: () {
+                  listasOt.removeAt(widget.index);
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(builder: (context) => Home()),
+                    (route) => false, // Elimina todas las rutas anteriores
+                  );
+                },
+                child: Text('Aceptar'))
+          ],
+        );
+      },
     );
   }
 }

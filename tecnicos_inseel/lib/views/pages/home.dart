@@ -81,7 +81,8 @@ class _HomeState extends State<Home> {
                                         const Duration(milliseconds: 500),
                                     pageBuilder: (context, animation,
                                             secondaryAnimation) =>
-                                        VistaOt(ot: listasOt[index]),
+                                        VistaOt(
+                                            ot: listasOt[index], index: index),
                                     transitionsBuilder: (context, animation,
                                         secondaryAnimation, child) {
                                       const begin = Offset(1.0,
