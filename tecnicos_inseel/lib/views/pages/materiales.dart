@@ -12,6 +12,7 @@ class Materiales extends StatefulWidget {
 }
 
 class _MaterialesState extends State<Materiales> {
+  final GlobalKey<FormState> _globalFormKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<OtsProvider>(context);
@@ -79,18 +80,21 @@ class _MaterialesState extends State<Materiales> {
                             borderRadius: BorderRadius.circular(20),
                           ),
                           child: ListTile(
-                            leading: Text(
-                              listaMateriales[index].value,
-                              style: const TextStyle(fontSize: 15),
-                            ),
-                            title: Text(listaMateriales[index].key),
-                            //subtitle: Text(listaMateriales[index].value),
-                            trailing: IconButton(onPressed: (){
-                              setState(() {
-                                nuevaOt.materiales.remove(listaMateriales[index].key);                                
-                              });
-                            }, icon: Icon(Icons.delete),)
-                          ),
+                              leading: Text(
+                                listaMateriales[index].value,
+                                style: const TextStyle(fontSize: 15),
+                              ),
+                              title: Text(listaMateriales[index].key),
+                              //subtitle: Text(listaMateriales[index].value),
+                              trailing: IconButton(
+                                onPressed: () {
+                                  setState(() {
+                                    nuevaOt.materiales
+                                        .remove(listaMateriales[index].key);
+                                  });
+                                },
+                                icon: Icon(Icons.delete),
+                              )),
                         ),
                       );
                     },
@@ -128,31 +132,52 @@ class _MaterialesState extends State<Materiales> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.push(
-            context,
-            PageRouteBuilder(
-              transitionDuration: const Duration(milliseconds: 600),
-              reverseTransitionDuration: const Duration(milliseconds: 500),
-              pageBuilder: (context, animation, secondaryAnimation) =>
-                  const Comentarios(),
-              transitionsBuilder:
-                  (context, animation, secondaryAnimation, child) {
-                const begin =
-                    Offset(1.0, 0.0); // Empieza fuera de la pantalla (derecha)
-                const end = Offset.zero; // Termina en su posición normal
-                const curve = Curves.easeInOut;
+          if (nuevaOt.materiales.isNotEmpty) {
+            Navigator.push(
+              context,
+              PageRouteBuilder(
+                transitionDuration: const Duration(milliseconds: 600),
+                reverseTransitionDuration: const Duration(milliseconds: 500),
+                pageBuilder: (context, animation, secondaryAnimation) =>
+                    const Comentarios(),
+                transitionsBuilder:
+                    (context, animation, secondaryAnimation, child) {
+                  const begin = Offset(
+                      1.0, 0.0); // Empieza fuera de la pantalla (derecha)
+                  const end = Offset.zero; // Termina en su posición normal
+                  const curve = Curves.easeInOut;
 
-                var tween = Tween(begin: begin, end: end)
-                    .chain(CurveTween(curve: curve));
-                var offsetAnimation = animation.drive(tween);
+                  var tween = Tween(begin: begin, end: end)
+                      .chain(CurveTween(curve: curve));
+                  var offsetAnimation = animation.drive(tween);
 
-                return SlideTransition(
-                  position: offsetAnimation,
-                  child: child,
+                  return SlideTransition(
+                    position: offsetAnimation,
+                    child: child,
+                  );
+                },
+              ),
+            );
+          } else {
+            showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  title: Text('Alerta'),
+                  content: Text(
+                      'Para evitar espacios en blanco,\nFavor diligenciar un item como "No Aplica"'),
+                  actions: <Widget>[
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop(); // Cierra el dialogo
+                      },
+                      child: Text('Cerrar'),
+                    ),
+                  ],
                 );
               },
-            ),
-          );
+            );
+          }
         },
         tooltip: 'Siguiente',
         child: const Icon(Icons.arrow_forward_sharp),

@@ -412,6 +412,7 @@ class _VistaOtState extends State<VistaOt> {
               child: SizedBox(
                 height: 50,
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Icon(
                       Icons.home,
@@ -442,6 +443,7 @@ class _VistaOtState extends State<VistaOt> {
               child: SizedBox(
                 height: 50,
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Icon(
                       Icons.download,
@@ -456,15 +458,15 @@ class _VistaOtState extends State<VistaOt> {
                 setState(() {
                   generando = true; // Muestra el indicador de carga
                 });
-                final successfulMessage =
+                /* final successfulMessage =
                     ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(content: Text("PDF guardado en Descargas")),
-                );
-                final e = '';
+                ); */
+                /* final e = '';
                 final errorMessage = // Manejo de errores
                     ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(content: Text("Error al generar el PDF: $e")),
-                );
+                ); */
                 try {
                   // Capturar el widget como imagen
                   //final imageBytes = await captureWidgetToImage(_captureKey);//captura lo que se ve en pantalla
@@ -477,9 +479,12 @@ class _VistaOtState extends State<VistaOt> {
                     '${widget.ot.fechaInicio} - ${widget.ot.numeroOt} - ${widget.ot.sucursal} - ${widget.ot.motivo}',
                     true,
                   );
-                  successfulMessage;
+                  ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text("PDF guardado en Descargas")),);
                 } catch (e) {
-                  errorMessage;
+                  ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text("Error al generar el PDF: $e")),
+                );
                 } finally {
                   setState(() {
                     generando = false; // Oculta el indicador de carga
@@ -499,6 +504,7 @@ class _VistaOtState extends State<VistaOt> {
               child: SizedBox(
                 height: 50,
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Icon(
                       Icons.share,
@@ -513,15 +519,15 @@ class _VistaOtState extends State<VistaOt> {
                 setState(() {
                   generando = true; // Muestra el indicador de carga
                 });
-                final successfulMessage =
+                /* final successfulMessage =
                     ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(content: Text("PDF compartido con éxito")),
-                );
-                final e = '';
+                ); */
+                /* final e = '';
                 final errorMessage = // Manejo de errores
                     ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(content: Text("Error al generar el PDF: $e")),
-                );
+                ); */
                 try {
                   // Capturar el widget como imagen
                   //final imageBytes = await captureWidgetToImage(_captureKey);//captura lo que se ve en pantalla
@@ -534,9 +540,13 @@ class _VistaOtState extends State<VistaOt> {
                     '${widget.ot.fechaInicio} - ${widget.ot.numeroOt} - ${widget.ot.sucursal} - ${widget.ot.motivo}',
                     false,
                   );
-                  successfulMessage;
+                  ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text("PDF compartido con éxito")),
+                );
                 } catch (e) {
-                  errorMessage;
+                  ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text("Error al generar el PDF: $e")),
+                );
                 } finally {
                   setState(() {
                     generando = false; // Oculta el indicador de carga
@@ -556,6 +566,7 @@ class _VistaOtState extends State<VistaOt> {
               child: SizedBox(
                 height: 50,
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Icon(
                       Icons.delete,

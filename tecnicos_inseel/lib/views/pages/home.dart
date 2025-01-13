@@ -70,7 +70,7 @@ class _HomeState extends State<Home> {
                             child: ListTile(
                               title: Text(listasOt[index].motivo),
                               subtitle: Text(listasOt[index].fechaInicio),
-                              trailing: Text(listasOt[index].numeroOt),
+                              trailing: Text(listasOt[index].sucursal),
                               onTap: () {
                                 Navigator.push(
                                   context,
