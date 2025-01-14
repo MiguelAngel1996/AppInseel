@@ -43,7 +43,7 @@ class _DiagnosticoInicialState extends State<DiagnosticoInicial> {
                     ),
                   ),
                   Text(
-                    'Página 3 de 8',
+                    'Página 3 de 9',
                     style: TextStyle(
                       fontSize: 12,
                       color: Theme.of(context).colorScheme.primary,
@@ -80,6 +80,7 @@ class _DiagnosticoInicialState extends State<DiagnosticoInicial> {
                           BorderRadius.circular(30), // Bordes redondeados
                     ),
                     child: TextFormField(
+                      autofocus: true,
                       validator: (value) {
                         if (value!.isEmpty) {
                           return 'Campo Obligatorio';

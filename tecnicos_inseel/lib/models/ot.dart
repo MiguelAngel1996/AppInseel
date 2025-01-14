@@ -1,3 +1,4 @@
+import 'dart:typed_data';
 class Ot {
   String numeroOt;
   String fechaInicio;
@@ -18,6 +19,9 @@ class Ot {
   String alturas;
   String estado;
   Map<String, String> materiales;
+  Uint8List firma;
+  String numeroCelular;
+  String correo;
 
   Ot({
     required this.numeroOt,
@@ -39,6 +43,9 @@ class Ot {
     required this.alturas,
     required this.estado,
     required this.materiales,
+    required this.firma,
+    required this.numeroCelular,
+    required this.correo,
   });
 
 }

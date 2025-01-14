@@ -46,7 +46,7 @@ class _InformacionInicialState extends State<InformacionInicial> {
                     ),
                   ),
                   Text(
-                    'Página 1 de 8',
+                    'Página 1 de 9',
                     style: TextStyle(
                       fontSize: 12,
                       color: Theme.of(context).colorScheme.primary,

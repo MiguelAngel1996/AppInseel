@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:tecnicos_inseel/models/ot.dart';
 
@@ -22,9 +24,12 @@ class OtsProvider extends ChangeNotifier {
     alturas: 'No',
     estado: 'Pendiente',
     materiales: {},
+    firma: Uint8List(0),
+    numeroCelular: '',
+    correo: '',
   );
 
-  void limpiarOt (){
+  void limpiarOt() {
     nuevaOt.numeroOt = '';
     nuevaOt.fechaInicio = '';
     nuevaOt.horaInicio = '';
@@ -44,6 +49,9 @@ class OtsProvider extends ChangeNotifier {
     nuevaOt.alturas = 'No';
     nuevaOt.estado = 'Pendiente';
     nuevaOt.materiales = {};
+    nuevaOt.firma = Uint8List(0);
+    nuevaOt.numeroCelular = '';
+    nuevaOt.correo = '';
   }
 
   void actualizarNumeroOt(String nuevoNumeroOt) {
@@ -141,6 +149,11 @@ class OtsProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  void actualizarFirma(Uint8List nuevoFirma) {
+    nuevaOt.firma = nuevoFirma;
+    notifyListeners();
+  }
+
   final List<Ot> _listaOts = [
     Ot(
       numeroOt: '0001',
@@ -162,6 +175,9 @@ class OtsProvider extends ChangeNotifier {
       alturas: 'No',
       estado: 'Pendiente',
       materiales: {'Lamparas': '2', 'Tornillos': '4'},
+      firma: Uint8List(0),
+      numeroCelular: '',
+      correo: '',
     ),
   ];
 
@@ -170,26 +186,32 @@ class OtsProvider extends ChangeNotifier {
   }
 
   void addOT() {
-    _listaOts.insert(0,Ot(
-        numeroOt: nuevaOt.numeroOt,
-        fechaInicio: nuevaOt.fechaInicio,
-        horaInicio: nuevaOt.horaInicio,
-        cliente: nuevaOt.cliente,
-        sucursal: nuevaOt.sucursal,
-        ciudad: nuevaOt.ciudad,
-        motivo: nuevaOt.motivo,
-        diagnostico: nuevaOt.diagnostico,
-        trabajos: nuevaOt.trabajos,
-        comentarios: nuevaOt.comentarios,
-        tecnico1: nuevaOt.tecnico1,
-        tecnico2: nuevaOt.tecnico2,
-        fechaFin: nuevaOt.fechaFin,
-        horaFin: nuevaOt.horaFin,
-        gastoReal: nuevaOt.gastoReal,
-        recibe: nuevaOt.recibe,
-        alturas: nuevaOt.alturas,
-        estado: nuevaOt.estado,
-        materiales: nuevaOt.materiales));
+    _listaOts.insert(
+        0,
+        Ot(
+          numeroOt: nuevaOt.numeroOt,
+          fechaInicio: nuevaOt.fechaInicio,
+          horaInicio: nuevaOt.horaInicio,
+          cliente: nuevaOt.cliente,
+          sucursal: nuevaOt.sucursal,
+          ciudad: nuevaOt.ciudad,
+          motivo: nuevaOt.motivo,
+          diagnostico: nuevaOt.diagnostico,
+          trabajos: nuevaOt.trabajos,
+          comentarios: nuevaOt.comentarios,
+          tecnico1: nuevaOt.tecnico1,
+          tecnico2: nuevaOt.tecnico2,
+          fechaFin: nuevaOt.fechaFin,
+          horaFin: nuevaOt.horaFin,
+          gastoReal: nuevaOt.gastoReal,
+          recibe: nuevaOt.recibe,
+          alturas: nuevaOt.alturas,
+          estado: nuevaOt.estado,
+          materiales: nuevaOt.materiales,
+          firma: nuevaOt.firma,
+          correo: nuevaOt.correo,
+          numeroCelular: nuevaOt.numeroCelular,
+        ));
     notifyListeners();
   }
 }

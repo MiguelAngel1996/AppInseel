@@ -12,7 +12,6 @@ class Materiales extends StatefulWidget {
 }
 
 class _MaterialesState extends State<Materiales> {
-  final GlobalKey<FormState> _globalFormKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<OtsProvider>(context);
@@ -46,7 +45,7 @@ class _MaterialesState extends State<Materiales> {
                     ),
                   ),
                   Text(
-                    'Página 5 de 8',
+                    'Página 5 de 9',
                     style: TextStyle(
                       fontSize: 12,
                       color: Theme.of(context).colorScheme.primary,

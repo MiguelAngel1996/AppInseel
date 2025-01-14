@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:tecnicos_inseel/controllers/ots_provider.dart';
-import 'package:tecnicos_inseel/views/components/vista_ot.dart';
+import 'package:tecnicos_inseel/views/pages/solicitud_firma.dart';
 
 class InformacionCierre extends StatefulWidget {
   const InformacionCierre({super.key});
@@ -18,7 +18,6 @@ class _InformacionCierreState extends State<InformacionCierre> {
   Widget build(BuildContext context) {
     final provider = Provider.of<OtsProvider>(context);
     final nuevaOt = provider.nuevaOt;
-    final listasOt = provider.listasOt;
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(80), // Altura personalizada
@@ -46,7 +45,7 @@ class _InformacionCierreState extends State<InformacionCierre> {
                     ),
                   ),
                   Text(
-                    'Página 8 de 8',
+                    'Página 8 de 9',
                     style: TextStyle(
                       fontSize: 12,
                       color: Theme.of(context).colorScheme.primary,
@@ -84,6 +83,7 @@ class _InformacionCierreState extends State<InformacionCierre> {
                       ),
                       const SizedBox(height: 8),
                       TextFormField(
+                        autofocus: true,
                         validator: (value) {
                           if (value!.isEmpty) {
                             return 'Campo Obligatorio';
@@ -413,39 +413,6 @@ class _InformacionCierreState extends State<InformacionCierre> {
                           nuevaOt.recibe = value;
                         },
                       ),
-                      //const SizedBox(height: 30),
-                      SizedBox(
-                        width: double.infinity,
-                        child: Padding(
-                          padding: const EdgeInsets.all(50),
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor:
-                                  Theme.of(context).colorScheme.primary,
-                            ),
-                            onPressed: () {
-                              if (_globalFormKey.currentState!.validate()) {
-                                provider.addOT();
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) =>
-                                        VistaOt(ot: listasOt[0], index: 0),
-                                  ),
-                                );
-                              }
-                            },
-                            child: Text(
-                              'Terminar',
-                              style: TextStyle(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold,
-                                  color:
-                                      Theme.of(context).colorScheme.onPrimary),
-                            ),
-                          ),
-                        ),
-                      ),
                     ],
                   ),
                 ),
@@ -453,6 +420,39 @@ class _InformacionCierreState extends State<InformacionCierre> {
             ],
           ),
         ),
+      ),
+    floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          if (_globalFormKey.currentState!.validate()) {
+            Navigator.push(
+              context,
+              PageRouteBuilder(
+                transitionDuration: const Duration(milliseconds: 600),
+                reverseTransitionDuration: const Duration(milliseconds: 500),
+                pageBuilder: (context, animation, secondaryAnimation) =>
+                    const SolicitudFirma(),
+                transitionsBuilder:
+                    (context, animation, secondaryAnimation, child) {
+                  const begin = Offset(
+                      1.0, 0.0); // Empieza fuera de la pantalla (derecha)
+                  const end = Offset.zero; // Termina en su posición normal
+                  const curve = Curves.easeInOut;
+
+                  var tween = Tween(begin: begin, end: end)
+                      .chain(CurveTween(curve: curve));
+                  var offsetAnimation = animation.drive(tween);
+
+                  return SlideTransition(
+                    position: offsetAnimation,
+                    child: child,
+                  );
+                },
+              ),
+            );
+          }
+        },
+        tooltip: 'Siguiente',
+        child: const Icon(Icons.arrow_forward_sharp),
       ),
     );
   }

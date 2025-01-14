@@ -42,7 +42,7 @@ class _AlturasPendienteState extends State<AlturasPendiente> {
                     ),
                   ),
                   Text(
-                    'Página 7 de 8',
+                    'Página 7 de 9',
                     style: TextStyle(
                       fontSize: 12,
                       color: Theme.of(context).colorScheme.primary,
