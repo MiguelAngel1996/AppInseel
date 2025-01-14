@@ -208,6 +208,7 @@ class _SolicitudFirmaState extends State<SolicitudFirma> {
                               Theme.of(context).colorScheme.primary,
                         ),
                         onPressed: () async {
+                          FocusScope.of(context).unfocus();
                           final bool refrescar = await Navigator.push(
                             context,
                             PageRouteBuilder(
@@ -240,6 +241,7 @@ class _SolicitudFirmaState extends State<SolicitudFirma> {
                           if (refrescar) {
                             setState(() {});
                           }
+                          FocusScope.of(context).unfocus();
                         },
                         child: Text(
                           'Firmar',

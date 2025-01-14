@@ -392,11 +392,12 @@ class _VistaOtState extends State<VistaOt> {
                                               top: 1380 * scale,
                                               left: 300 * scale,
                                               child: SizedBox(
-                                                width: containerWidth * 0.05,
-                                                child: widget.ot.firma.isNotEmpty
-                                                  ? Image.memory(widget.ot.firma)
-                                                  : SizedBox()
-                                              ),
+                                                  width: containerWidth * 0.05,
+                                                  child:
+                                                      widget.ot.firma.isNotEmpty
+                                                          ? Image.memory(
+                                                              widget.ot.firma)
+                                                          : SizedBox()),
                                             )
                                           ],
                                         ),
@@ -493,11 +494,7 @@ class _VistaOtState extends State<VistaOt> {
                         _captureKey); //captura todo el contenido
 
                     // Generar y compartir el PDF
-                    await generateAndSharePdf(
-                      imageBytes,
-                      '${widget.ot.fechaInicio} - ${widget.ot.numeroOt} - ${widget.ot.sucursal} - ${widget.ot.motivo}',
-                      true,
-                    );
+                    await generateAndSharePdf(imageBytes, true, widget.ot);
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(content: Text("PDF guardado en Descargas")),
                     );
@@ -556,11 +553,7 @@ class _VistaOtState extends State<VistaOt> {
                         _captureKey); //captura todo el contenido
 
                     // Generar y compartir el PDF
-                    await generateAndSharePdf(
-                      imageBytes,
-                      '${widget.ot.fechaInicio} - ${widget.ot.numeroOt} - ${widget.ot.sucursal} - ${widget.ot.motivo}',
-                      false,
-                    );
+                    await generateAndSharePdf(imageBytes, false, widget.ot);
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(content: Text("PDF compartido con éxito")),
                     );

@@ -9,15 +9,17 @@ import 'package:pdf/widgets.dart' as pw;
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:tecnicos_inseel/models/ot.dart';
+import 'package:tecnicos_inseel/services/enviar_correo.dart';
 
-Future<void> generateAndSharePdf(Uint8List imageBytes, String fileName, bool option) async {
+Future<void> generateAndSharePdf(Uint8List imageBytes, bool option, Ot ordenTrabajo) async {
 
     // Guardar el PDF en el almacenamiento local cache para compartir
   final output = await getTemporaryDirectory();
-  String filePath = '${output.path}/$fileName.pdf';
+  String filePath = '${output.path}/${ordenTrabajo.fechaInicio} - ${ordenTrabajo.numeroOt} - ${ordenTrabajo.sucursal} - ${ordenTrabajo.motivo}.pdf';
 
   //opción true guarda en descargas, false comparte
-  option ? filePath = '/storage/emulated/0/Download/$fileName.pdf' : null;//Guarda en descargas -opción forzada por no obtener permisos aún
+  option ? filePath = '/storage/emulated/0/Download/${ordenTrabajo.fechaInicio} - ${ordenTrabajo.numeroOt} - ${ordenTrabajo.sucursal} - ${ordenTrabajo.motivo}.pdf' : null;//Guarda en descargas -opción forzada por no obtener permisos aún
 
 
   // Solicitar permisos
@@ -53,7 +55,8 @@ Future<void> generateAndSharePdf(Uint8List imageBytes, String fileName, bool opt
   await file.writeAsBytes(await pdf.save());
   // Compartir el PDF
   //opción true guarda en descargas, false comparte
-  option ? null : await Share.shareXFiles([XFile(file.path)]);
+  //option ? null : await Share.shareXFiles([XFile(file.path)]);
+  option ? null : await enviarCorreo(ordenTrabajo, file.path);
 }
 
 
