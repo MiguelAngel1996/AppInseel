@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "877893213406",
+    "project_id": "tecnicos-inseel-sas",
+    "storage_bucket": "tecnicos-inseel-sas.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:877893213406:android:6575293fd6549b235af64f",
+        "android_client_info": {
+          "package_name": "com.example.tecnicos_inseel"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmKcotSKjEz5rNjeRStwCRGaVCSux1nRc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

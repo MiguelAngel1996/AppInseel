@@ -3,8 +3,14 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:tecnicos_inseel/controllers/ots_provider.dart';
 import 'package:tecnicos_inseel/views/pages/home.dart';
 import 'package:provider/provider.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+  options: DefaultFirebaseOptions.currentPlatform,
+);
   runApp(const TecnicosInseel());
 }
 
@@ -19,6 +25,13 @@ class TecnicosInseel extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Tecnicos Inseel',
         theme: ThemeData(
+          inputDecorationTheme: InputDecorationTheme(
+            errorStyle: TextStyle(
+              fontSize: 16, // Tamaño de la letra
+              fontWeight: FontWeight.bold, // Negrita
+              color: Colors.red, // Color del texto de error
+            ),
+          ),
           fontFamily: 'oxanium',
           colorScheme: const ColorScheme(
               brightness: Brightness.light,

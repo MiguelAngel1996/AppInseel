@@ -195,6 +195,7 @@ class _InformacionCierreState extends State<InformacionCierre> {
                                   controller: _dateController,
                                   readOnly: true,
                                   decoration: InputDecoration(
+                                    errorMaxLines: 2,
                                     prefixIcon: Icon(Icons.calendar_today),
                                     filled: true,
                                     fillColor: Theme.of(context)
@@ -269,6 +270,7 @@ class _InformacionCierreState extends State<InformacionCierre> {
                                   controller: _timeController,
                                   readOnly: true,
                                   decoration: InputDecoration(
+                                    errorMaxLines: 2,
                                     prefixIcon: Icon(Icons.access_time),
                                     filled: true,
                                     fillColor: Theme.of(context)

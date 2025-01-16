@@ -149,9 +149,11 @@ class _InformacionInicialState extends State<InformacionInicial> {
                                     }
                                     return null;
                                   },
+                                  
                                   readOnly: true,
                                   controller: _dateController,
                                   decoration: InputDecoration(
+                                    errorMaxLines: 2,
                                     prefixIcon: Icon(Icons.calendar_today),
                                     filled: true,
                                     fillColor: Theme.of(context)
@@ -226,6 +228,7 @@ class _InformacionInicialState extends State<InformacionInicial> {
                                   },
                                   controller: _timeController,
                                   decoration: InputDecoration(
+                                    errorMaxLines: 2,
                                     prefixIcon: Icon(Icons.access_time),
                                     filled: true,
                                     fillColor: Theme.of(context)

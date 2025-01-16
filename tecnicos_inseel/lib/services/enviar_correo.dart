@@ -22,10 +22,15 @@ Future<void> enviarCorreo(Ot ordenTrabajo, String filePath) async {
   // Crea el mensaje
   final message = Message()
     ..from = Address(username, 'INSEEL SAS')
-    ..recipients.addAll([ordenTrabajo.correo,'planeacionproyectos@inseelsas.com']) // Agrega destinatarios
-    ..subject = 'Prueba de envío OT'
-    ..text = 'Este es un mensaje de texto plano.'
-    ..html = '<h1>Este es un mensaje en HTML</h1>'
+    ..recipients.addAll([
+      ordenTrabajo.correo,
+      'planeacionproyectos@inseelsas.com'
+    ]) // Agrega destinatarios
+    ..subject = 'Orden de trabajo realizada #${ordenTrabajo.numeroOt}'
+    ..text =
+        'Cordial saludo, Adjuntamos orden de trabajo de la actividad realizada. La orden de trabajo fue firmada y recibida con código de verificacion enviada a +57${ordenTrabajo.numeroCelular}Cualquier observación referente al servicio favor comunicarse por este medio. ¡Gracias por confiar en nosotros!'
+    ..html =
+        '<html lang="es"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Orden de Trabajo</title></head><body><p>Cordial saludo,</p><p>Adjuntamos orden de trabajo de la actividad realizada.</p><p>La orden de trabajo fue firmada y recibida con código de verificacion enviada a +57${ordenTrabajo.numeroCelular}.</p><p>Cualquier observación referente al servicio favor comunicarse por este medio.</p><p>¡Gracias por confiar en nosotros!</p></body></html>'
     ..attachments.add(FileAttachment(File(filePath))
       ..fileName = '${ordenTrabajo.fechaInicio} ${ordenTrabajo.motivo}');
 

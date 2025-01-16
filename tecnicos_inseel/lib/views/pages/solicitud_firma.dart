@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:tecnicos_inseel/controllers/ots_provider.dart';
 import 'package:tecnicos_inseel/views/components/firma.dart';
@@ -13,6 +14,8 @@ class SolicitudFirma extends StatefulWidget {
 
 class _SolicitudFirmaState extends State<SolicitudFirma> {
   final GlobalKey<FormState> _globalFormKey = GlobalKey<FormState>();
+  final TextEditingController _phoneController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<OtsProvider>(context);
@@ -83,14 +86,24 @@ class _SolicitudFirmaState extends State<SolicitudFirma> {
                       ),
                       const SizedBox(height: 8),
                       TextFormField(
+                        controller: _phoneController,
+                        keyboardType: TextInputType.number,
+                        inputFormatters: [
+                          FilteringTextInputFormatter
+                              .digitsOnly, // Permitir solo números
+                          LengthLimitingTextInputFormatter(
+                              10), // Limitar a 10 caracteres
+                        ],
                         validator: (value) {
-                          if (value!.isEmpty) {
-                            return 'Campo Obligatorio';
+                          if (value == null || value.isEmpty) {
+                            return 'Por favor, ingrese un número de teléfono';
+                          } else if (value.length != 10) {
+                            return 'El número ingresado no es válido';
                           }
                           return null;
                         },
-                        maxLength: 30,
                         decoration: InputDecoration(
+                          errorMaxLines: 2,
                           filled: true,
                           fillColor: Theme.of(context).colorScheme.onSecondary,
                           contentPadding: const EdgeInsets.symmetric(
@@ -126,14 +139,20 @@ class _SolicitudFirmaState extends State<SolicitudFirma> {
                       ),
                       const SizedBox(height: 8),
                       TextFormField(
+                        controller: _emailController,
+                        keyboardType: TextInputType.emailAddress,
                         validator: (value) {
-                          if (value!.isEmpty) {
-                            return 'Campo Obligatorio';
+                          if (value == null || value.isEmpty) {
+                            return 'Por favor, ingrese un correo electrónico';
+                          } else if (!RegExp(r'^[^@\s]+@[^@\s]+\.[^@\s]+$')
+                              .hasMatch(value)) {
+                            return 'Ingrese un correo electrónico válido';
                           }
                           return null;
                         },
-                        maxLength: 30,
+                        maxLength: 50,
                         decoration: InputDecoration(
+                          errorMaxLines: 2,
                           filled: true,
                           fillColor: Theme.of(context).colorScheme.onSecondary,
                           contentPadding: const EdgeInsets.symmetric(

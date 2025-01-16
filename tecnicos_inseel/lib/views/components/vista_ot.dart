@@ -7,7 +7,6 @@ import 'package:tecnicos_inseel/controllers/ots_provider.dart';
 //import 'package:tecnicos_inseel/controllers/ots_provider.dart';
 import 'package:tecnicos_inseel/models/ot.dart';
 import 'package:tecnicos_inseel/services/compartir_pdf.dart';
-import 'package:tecnicos_inseel/views/components/firma.dart';
 import 'package:tecnicos_inseel/views/components/vista_previa.dart';
 import 'package:tecnicos_inseel/views/pages/home.dart';
 
