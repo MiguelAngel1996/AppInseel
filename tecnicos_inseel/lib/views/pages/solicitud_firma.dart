@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:tecnicos_inseel/controllers/ots_provider.dart';
+import 'package:tecnicos_inseel/views/components/codigo_sms.dart';
 import 'package:tecnicos_inseel/views/components/firma.dart';
 import 'package:tecnicos_inseel/views/components/vista_ot.dart';
 
@@ -16,6 +18,81 @@ class _SolicitudFirmaState extends State<SolicitudFirma> {
   final GlobalKey<FormState> _globalFormKey = GlobalKey<FormState>();
   final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
+
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  String? _verificationId;
+  bool _isButtonEnabled = false;
+
+  Future<void> _sendCode() async {
+    try {
+      print(_phoneController.text);
+      await _auth.verifyPhoneNumber(
+        phoneNumber: _phoneController.text,
+        verificationCompleted: (PhoneAuthCredential credential) async {
+          print('entra');
+          await _auth.signInWithCredential(credential);
+          setState(() {
+            _isButtonEnabled = true;
+          });          
+        },
+        verificationFailed: (FirebaseAuthException e) {
+          print('fallado');
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Error: ${e.message}')),
+          );
+        },
+        codeSent: (String verificationId, int? resendToken) {
+          print('enviado');
+          setState(() {
+            _verificationId = verificationId;
+          });
+          _showVerificationModal();
+        },
+        codeAutoRetrievalTimeout: (String verificationId) {
+          setState(() {
+            _verificationId = verificationId;
+          });
+        },
+      );
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Error: $e')),
+      );
+    }
+  }
+
+  Future<void> _verifyCode(String smsCode) async {
+    try {
+      final credential = PhoneAuthProvider.credential(
+        verificationId: _verificationId!,
+        smsCode: smsCode,
+      );
+      await _auth.signInWithCredential(credential);
+      setState(() {
+        _isButtonEnabled = true;
+      });
+      Navigator.pop(context); // Cierra el modal después de la verificación
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Invalid code')),
+      );
+    }
+  }
+
+  void _showVerificationModal() {
+    showModalBottomSheet(
+      sheetAnimationStyle: AnimationStyle(
+        duration: Duration(milliseconds: 700),
+        reverseDuration: Duration(milliseconds: 700),
+      ),
+      context: context,
+      isScrollControlled: true,
+      builder: (context) {
+        return CodigoSms(onVerifyCode: _verifyCode);
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<OtsProvider>(context);
@@ -87,13 +164,13 @@ class _SolicitudFirmaState extends State<SolicitudFirma> {
                       const SizedBox(height: 8),
                       TextFormField(
                         controller: _phoneController,
-                        keyboardType: TextInputType.number,
-                        inputFormatters: [
+                        //keyboardType: TextInputType.number,
+                        /* inputFormatters: [
                           FilteringTextInputFormatter
                               .digitsOnly, // Permitir solo números
                           LengthLimitingTextInputFormatter(
                               10), // Limitar a 10 caracteres
-                        ],
+                        ], */
                         validator: (value) {
                           if (value == null || value.isEmpty) {
                             return 'Por favor, ingrese un número de teléfono';
@@ -128,6 +205,17 @@ class _SolicitudFirmaState extends State<SolicitudFirma> {
                         onChanged: (value) {
                           nuevaOt.numeroCelular = value;
                         },
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: ElevatedButton(
+                          onPressed: _sendCode,
+                          child: const Text(
+                            'Solicitar Código',
+                            style: TextStyle(
+                                fontSize: 15, fontWeight: FontWeight.bold),
+                          ),
+                        ),
                       ),
                       const SizedBox(height: 10),
                       Text(
@@ -226,42 +314,45 @@ class _SolicitudFirmaState extends State<SolicitudFirma> {
                           backgroundColor:
                               Theme.of(context).colorScheme.primary,
                         ),
-                        onPressed: () async {
-                          FocusScope.of(context).unfocus();
-                          final bool refrescar = await Navigator.push(
-                            context,
-                            PageRouteBuilder(
-                              transitionDuration:
-                                  const Duration(milliseconds: 600),
-                              reverseTransitionDuration:
-                                  const Duration(milliseconds: 500),
-                              pageBuilder:
-                                  (context, animation, secondaryAnimation) =>
-                                      Firma(),
-                              transitionsBuilder: (context, animation,
-                                  secondaryAnimation, child) {
-                                const begin = Offset(1.0,
-                                    0.0); // Empieza fuera de la pantalla (derecha)
-                                const end = Offset
-                                    .zero; // Termina en su posición normal
-                                const curve = Curves.easeInOut;
+                        onPressed: _isButtonEnabled
+                            ? () async {
+                                FocusScope.of(context).unfocus();
+                                final bool refrescar = await Navigator.push(
+                                  context,
+                                  PageRouteBuilder(
+                                    transitionDuration:
+                                        const Duration(milliseconds: 600),
+                                    reverseTransitionDuration:
+                                        const Duration(milliseconds: 500),
+                                    pageBuilder: (context, animation,
+                                            secondaryAnimation) =>
+                                        Firma(),
+                                    transitionsBuilder: (context, animation,
+                                        secondaryAnimation, child) {
+                                      const begin = Offset(1.0,
+                                          0.0); // Empieza fuera de la pantalla (derecha)
+                                      const end = Offset
+                                          .zero; // Termina en su posición normal
+                                      const curve = Curves.easeInOut;
 
-                                var tween = Tween(begin: begin, end: end)
-                                    .chain(CurveTween(curve: curve));
-                                var offsetAnimation = animation.drive(tween);
+                                      var tween = Tween(begin: begin, end: end)
+                                          .chain(CurveTween(curve: curve));
+                                      var offsetAnimation =
+                                          animation.drive(tween);
 
-                                return SlideTransition(
-                                  position: offsetAnimation,
-                                  child: child,
+                                      return SlideTransition(
+                                        position: offsetAnimation,
+                                        child: child,
+                                      );
+                                    },
+                                  ),
                                 );
-                              },
-                            ),
-                          );
-                          if (refrescar) {
-                            setState(() {});
-                          }
-                          FocusScope.of(context).unfocus();
-                        },
+                                if (refrescar) {
+                                  setState(() {});
+                                }
+                                FocusScope.of(context).unfocus();
+                              }
+                            : null,
                         child: Text(
                           'Firmar',
                           style: TextStyle(
