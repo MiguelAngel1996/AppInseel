@@ -42,7 +42,7 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyD9jcSCvQJQnaT3359sxZ9rgMMfoC5lYoQ',
+    apiKey: '',
     appId: '1:877893213406:web:8c0d1d4ff76139295af64f',
     messagingSenderId: '877893213406',
     projectId: 'tecnicos-inseel-sas',
@@ -52,7 +52,7 @@ class DefaultFirebaseOptions {
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBmKcotSKjEz5rNjeRStwCRGaVCSux1nRc',
+    apiKey: '',
     appId: '1:877893213406:android:6575293fd6549b235af64f',
     messagingSenderId: '877893213406',
     projectId: 'tecnicos-inseel-sas',
@@ -60,7 +60,7 @@ class DefaultFirebaseOptions {
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyCTKPQJOmVIud2VvfSf9-unfLsoj49ML7s',
+    apiKey: '',
     appId: '1:877893213406:ios:adb161cb6ece70415af64f',
     messagingSenderId: '877893213406',
     projectId: 'tecnicos-inseel-sas',
@@ -69,7 +69,7 @@ class DefaultFirebaseOptions {
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyCTKPQJOmVIud2VvfSf9-unfLsoj49ML7s',
+    apiKey: '',
     appId: '1:877893213406:ios:adb161cb6ece70415af64f',
     messagingSenderId: '877893213406',
     projectId: 'tecnicos-inseel-sas',
@@ -78,7 +78,7 @@ class DefaultFirebaseOptions {
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyD9jcSCvQJQnaT3359sxZ9rgMMfoC5lYoQ',
+    apiKey: '',
     appId: '1:877893213406:web:f0f7e6693b8edb2d5af64f',
     messagingSenderId: '877893213406',
     projectId: 'tecnicos-inseel-sas',
